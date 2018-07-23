@@ -14,5 +14,10 @@ describe Item do
     it 'should have owner' do
       expect { item.owner = User.new }.not_to raise_error
     end
+
+    it 'should have one city through user' do
+      item.owner = User.new
+      expect { item.city = City.new }.not_to raise_error
+    end
   end
 end

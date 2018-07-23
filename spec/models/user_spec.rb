@@ -12,6 +12,14 @@ describe User do
     end
 
     it 'should have many received_reviews' do
+      expect { user.personal_reviews.build }.not_to raise_error
+    end
+
+    it 'should belongs to city' do
+      expect { user.city = City.new }.not_to raise_error
+    end
+
+    it 'should have item reviews' do
       expect { user.received_reviews.build }.not_to raise_error
     end
   end
