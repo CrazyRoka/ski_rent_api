@@ -1,12 +1,10 @@
 class CreateReview < ActiveRecord::Migration[5.2]
   def change
     create_table :reviews do |t|
-      t.belongs_to :owner, foreign_key: true
+      t.references :author, references: :user, foreign_key: {to_table: :users}
       t.text :description
-      t.integer :reviewable_id
-      t.string :reviewable_type
+      t.references :reviewable, polymorphic: true, index: true
+      t.timestamps
     end
-
-    add_index :reviews, [:reviewable_type, :reviewable_id]
   end
 end
