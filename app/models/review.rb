@@ -5,16 +5,12 @@ class Review < ApplicationRecord
   validate :author_has_permissions_to_review
 
   def author_has_permissions_to_review
-    case self.reviewable_type
+    case reviewable_type
     when 'User'
       items = reviewable.items
-      deal = false
-      items.each do |item|
-        if item.bookings.any? { |booking| booking.renter == author }
-          deal = true
-        end
+      if items.none? { |item| item.bookings.any? { |booking| booking.renter == author } }
+        errors.add(:author, 'author didn`t deal with this item owner before')
       end
-      errors.add(:author, 'author didn`t deal with this item owner before') unless deal
     when 'Item'
       item = reviewable
       unless item.bookings.any? { |booking| booking.renter == author }
