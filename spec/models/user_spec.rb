@@ -22,6 +22,10 @@ describe User do
     it 'should have item reviews' do
       expect { user.received_item_reviews.build }.not_to raise_error
     end
+
+    it 'should have many bookings' do
+      expect { user.bookings.build }.not_to raise_error
+    end
   end
 
   context 'authentication' do
