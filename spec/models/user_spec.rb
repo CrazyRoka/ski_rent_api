@@ -36,7 +36,6 @@ describe User do
 
       user.password = 'my_name_is_john'
       expect(user.valid?).to eq(true)
-      p user.password_digest
     end
   end
 end

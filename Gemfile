@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
-gem 'knock'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -34,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec_api_documentation'
 end
 
 group :development do
@@ -43,6 +44,16 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'knock'
+gem 'multi_json'
+gem 'roar'
+gem 'responders'
+gem 'roar-rails'
