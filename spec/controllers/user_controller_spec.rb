@@ -60,7 +60,7 @@ resource UserController do
     header 'Authorization', :authorization_header
 
     parameter :name, "User name", required: false, scope: :user
-    parameter :city_id, "Users city name", required: false, scope: :user
+    parameter :city_id, "Users city id", required: false, scope: :user
 
     let(:user) { create(:user) }
     let(:authorization_header) do
@@ -79,15 +79,8 @@ resource UserController do
         expect(User.last.city_id).to eq(city_id)
       end
 
-      let(:expected_output) do
-        {
-            name:  name,
-            email: user.email
-        }
-      end
-
       example_request 'return updated user' do
-        expect(response_body).to eq(expected_output.to_json)
+        expect(response_body).to eq(user.reload.extend(UserRepresenter).to_json)
       end
     end
   end
@@ -99,17 +92,11 @@ resource UserController do
     let(:authorization_header) do
       "Bearer #{Knock::AuthToken.new(payload: { sub: user.id }).token}"
     end
-    let(:expected_output) do
-      {
-          name:  user.name,
-          email: user.email
-      }
-    end
 
     context 'user profile' do
       example_request 'should return user info' do
         expect(response.status).to eq(200)
-        expect(response_body).to eq(expected_output.to_json)
+        expect(response_body).to eq(user.extend(UserRepresenter).to_json)
       end
     end
   end

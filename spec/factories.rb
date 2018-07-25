@@ -9,4 +9,10 @@ FactoryBot.define do
     password 'example'
     city     { build(:city) }
   end
+
+  factory :item, class: Item do
+    owner           { create(:user) }
+    name              'ski'
+    daily_price_cents 400
+  end
 end
