@@ -4,6 +4,7 @@ class UserController < ApplicationController
   include Roar::Rails::ControllerAdditions
   respond_to :json
 
+  # POST /api/sign_up
   def sign_up
     user = User.new(user_params)
     if user.save
@@ -14,22 +15,19 @@ class UserController < ApplicationController
     end
   end
 
+  # GET /api/users/me
   def me
     respond_with current_user
   end
 
+  # PATCH /api/users
   def update
     if current_user.update(user_params)
-      respond_with current_user
+      render json: current_user.extend(UserRepresenter)
     else
       render json: { errors: current_user.errors }, status: :unprocessable_entity
     end
   end
-
-  # def destroy
-  #   user = User.find_by_email(user_params[:email])
-  #
-  # end
 
   private
 

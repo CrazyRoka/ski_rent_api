@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource UserController do
+resource ItemsController do
   header "Content-Type", "application/json"
   header 'Authorization', :authorization_header
 
@@ -11,9 +11,7 @@ resource UserController do
     "Bearer #{Knock::AuthToken.new(payload: { sub: user.id }).token}"
   end
 
-  get '/api/item' do
-    parameter :id, "Item id", scope: :item
-
+  get '/api/items/:id' do
     context 'item exist' do
       let(:item) { create(:item, owner: user) }
       let(:id) { item.id }
@@ -29,7 +27,7 @@ resource UserController do
       let(:id) { item.id }
 
       example_request 'authorization fail' do
-        expect(response_status).to eq(401)
+        expect(status).to eq(401)
       end
     end
   end
@@ -40,13 +38,12 @@ resource UserController do
     let(:items) { user.extend(UserItemsRepresenter) }
 
     example_request 'should return all user items' do
-      expect(response.status).to eq(200)
+      expect(status).to eq(200)
       expect(response_body).to eq(items.to_json)
     end
   end
 
-  post '/api/item/update' do
-    parameter :id, "Item id", scope: :item
+  patch '/api/items/:id' do
     parameter :name, "Item name", scope: :item
     parameter :daily_price_cents, "Item daily price", scope: :item
     parameter :owner_id, "Item owner id", scope: :item
@@ -58,7 +55,7 @@ resource UserController do
       let(:name) { 'example' }
 
       example_request '200' do
-        expect(response_status).to eq(200)
+        expect(status).to eq(200)
         expect(item.reload.name).to eq('example')
         expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
       end
@@ -68,7 +65,7 @@ resource UserController do
       let(:daily_price_cents) { 350 }
 
       example_request '200' do
-        expect(response_status).to eq(200)
+        expect(status).to eq(200)
         expect(item.reload.daily_price_cents).to eq(350)
         expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
       end
@@ -79,14 +76,14 @@ resource UserController do
       let(:owner_id) { other_owner.id }
 
       example_request '200' do
-        expect(response_status).to eq(200)
+        expect(status).to eq(200)
         expect(item.reload.owner.id).to eq(other_owner.id)
         expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
       end
     end
   end
 
-  post '/api/item/destroy' do
+  delete '/api/items/:id' do
     parameter :id, "Item id", scope: :item
 
     context 'delete item' do
@@ -95,7 +92,7 @@ resource UserController do
 
       example '200' do
         expect { do_request }.to change { Item.count }.by(-1)
-        expect(response_status).to eq(200)
+        expect(status).to eq(200)
         expect(response_body).to eq(item.extend(ItemRepresenter).to_json)
       end
     end
@@ -105,14 +102,14 @@ resource UserController do
       let(:item) { create(:item, owner: other_owner) }
       let!(:id) { item.id }
 
-      example '401' do
+      example '403' do
         expect { do_request }.not_to change { Item.count }
-        expect(response_status).to eq(401)
+        expect(status).to eq(403)
       end
     end
   end
 
-  post '/api/item/create' do
+  post '/api/items' do
     parameter :name, "Item name", scope: :item
     parameter :daily_price_cents, "Item daily price", scope: :item
 
@@ -122,7 +119,7 @@ resource UserController do
 
       example '201' do
         expect { do_request }.to change { Item.count }.by(1)
-        expect(response_status).to eq(201)
+        expect(status).to eq(201)
         expect(response_body).to eq(Item.last.extend(ItemRepresenter).to_json)
       end
     end

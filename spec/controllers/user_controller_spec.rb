@@ -33,30 +33,7 @@ resource UserController do
     end
   end
 
-  # post '/api/users/destroy' do
-  #   header 'Authorization', :authorization_header
-  #
-  #   let(:user) { create(:user) }
-  #   let(:authorization_header) do
-  #     "Bearer #{Knock::AuthToken.new(payload: { sub: user.id }).token}"
-  #   end
-  #
-  #   context 'valid user profile' do
-  #     example 'should be destroyed' do
-  #       expect { do_request }.to change(User.count).by(1)
-  #       expect(request.status).to eq(200)
-  #     end
-  #   end
-  #
-  #   context 'invalid user' do
-  #     example 'should return 404' do
-  #       expect { do_request }.to change(User.count).by(1)
-  #       expect(request.status).to eq(200)
-  #     end
-  #   end
-  # end
-
-  post 'api/users/update' do
+  patch 'api/users' do
     header 'Authorization', :authorization_header
 
     parameter :name, "User name", required: false, scope: :user
