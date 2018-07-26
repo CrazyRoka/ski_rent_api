@@ -21,6 +21,7 @@ don = User.create(name: 'Don', password: 'My_name_is_Don', email: 'don@email.com
 ski = Item.create(owner: john, name: 'ski', daily_price_cents: 400)
 fast_ski = Item.create(owner: din, name: 'fast ski', daily_price_cents: 1000)
 slow_ski = Item.create(owner: don, name: 'slow ski', daily_price_cents: 300)
+boot = Item.create(owner: don, name: 'boot', daily_price_cents: 300)
 
 Booking.create(item: ski, renter: maria, start_date: Time.now, end_date: Time.now + 10.days, cost_cents: 400 * 10)
 Booking.create(item: fast_ski, renter: don, start_date: Time.now, end_date: Time.now + 10.days, cost_cents: 1000 * 10)

@@ -17,4 +17,15 @@ class Item < ApplicationRecord
     options = Option.where(filter: filter, option_value: options.values)
     items.select { |item| (item.options & options).any? }
   end
+
+  def self.with_cost(days_number:, lower_price:, upper_price:)
+    upper_price /= days_number.to_f
+    lower_price /= days_number.to_f
+    where('(daily_price_cents <= ?) AND (daily_price_cents >= ?)', upper_price, lower_price)
+  end
+
+  def self.available_in(date)
+    items =  Item.joins(:bookings).where('(start_date <= ?) AND (end_date >= ?)', date, date)
+    Item.where.not(id: items.map(&:id))
+  end
 end

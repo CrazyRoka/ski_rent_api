@@ -34,8 +34,8 @@ describe Item do
     let(:boots_category) { create(:category, name: 'Boots') }
     let(:ski_category) { create(:category, name: 'Skies') }
 
-    let!(:ski) { create(:item, name: 'mountain_ski', owner: user, category: ski_category) }
-    let!(:boot) { create(:item, name: 'boot', owner: user, category: boots_category) }
+    let!(:ski) { create(:item, daily_price_cents: 400, name: 'mountain_ski', owner: user, category: ski_category) }
+    let!(:boot) { create(:item, daily_price_cents: 300, name: 'boot', owner: user, category: boots_category) }
 
     let(:filter_boot_size) { create(:filter, filter_name: 'size', category: boots_category) }
     let(:filter_ski_size) { create(:filter, filter_name: 'size', category: ski_category) }
@@ -78,6 +78,29 @@ describe Item do
       it 'should return medium boots' do
         expect(medium_size_boots.count).to eq(1)
         expect(medium_size_boots[0]).to eq(boot)
+      end
+    end
+
+    context 'by price range' do
+      it 'should return items with suitable cost' do
+        expect(Item.with_cost(days_number: 3, lower_price: 800, upper_price: 1400).count).to eq(2)
+        expect(Item.with_cost(days_number: 3, lower_price: 900, upper_price: 1199).count).to eq(1)
+        expect(Item.with_cost(days_number: 3, lower_price: 901, upper_price: 1200).count).to eq(1)
+        expect(Item.with_cost(days_number: 2, lower_price: 100, upper_price: 200).count).to eq(0)
+      end
+    end
+
+    context 'by booking date' do
+      let!(:booking) do
+        Booking.create(item: ski, renter: user, start_date: Time.now,
+                       end_date: Time.now + 3.days, cost_cents: 3 * ski.daily_price_cents)
+      end
+
+      it 'should return items, available between dates' do
+        expect(Item.available_in(Time.now + 1.day).count).to eq(1)
+        expect(Item.available_in(Time.now + 1.day).include?(boot)).to eq(true)
+        
+        expect(Item.available_in(Time.now + 4.day).count).to eq(2)
       end
     end
   end
