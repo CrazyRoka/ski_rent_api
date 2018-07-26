@@ -3,12 +3,8 @@ class ItemsController < ApplicationController
 
   # GET /api/item(:id)
   def show
-    item = Item.find(params[:id])
-    if item.owner == current_user
-      render json: item.extend(ItemRepresenter)
-    else
-      render json: { errors: item.errors }, status: :unauthorized
-    end
+    item = authorize Item.find(params[:id])
+    render json: item.extend(ItemRepresenter)
   end
 
   # GET /api/items
@@ -39,13 +35,9 @@ class ItemsController < ApplicationController
 
   # DELETE /api/items/:id
   def destroy
-    item = Item.find(params[:id])
-    if item.owner == current_user
-      item.destroy
-      render json: item.extend(ItemRepresenter)
-    else
-      render json: { errors: item.errors }, status: :forbidden
-    end
+    item = authorize Item.find(params[:id])
+    item.destroy
+    render json: item.extend(ItemRepresenter)
   end
 
   private

@@ -95,6 +95,8 @@ GEM
       mini_portile2 (~> 2.3.0)
     pg (1.0.0)
     puma (3.12.0)
+    pundit (2.0.0)
+      activesupport (>= 3.0.0)
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -205,6 +207,7 @@ DEPENDENCIES
   multi_json
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.0)
   responders
   roar

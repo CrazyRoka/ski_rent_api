@@ -27,7 +27,7 @@ resource ItemsController do
       let(:id) { item.id }
 
       example_request 'authorization fail' do
-        expect(status).to eq(401)
+        expect(status).to eq(403)
       end
     end
   end
@@ -97,12 +97,12 @@ resource ItemsController do
       end
     end
 
-    context 'invalid owner' do
-      let(:other_owner) { create(:user, email: 'daniel@test.com') }
-      let(:item) { create(:item, owner: other_owner) }
-      let!(:id) { item.id }
+    context 'item belongs to another user' do
+      let(:other_user) { create(:user, email: 'daniel@email.com') }
+      let!(:item) { create(:item, owner: other_user) }
+      let(:id) { item.id }
 
-      example '403' do
+      example 'authorization fail' do
         expect { do_request }.not_to change { Item.count }
         expect(status).to eq(403)
       end
