@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_132622) do
+ActiveRecord::Schema.define(version: 2018_07_26_091221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,20 @@ ActiveRecord::Schema.define(version: 2018_07_24_132622) do
     t.index ["renter_id"], name: "index_bookings_on_renter_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "filters", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "filter_name"
+    t.index ["category_id"], name: "index_filters_on_category_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -39,7 +49,22 @@ ActiveRecord::Schema.define(version: 2018_07_24_132622) do
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["owner_id"], name: "index_items_on_owner_id"
+  end
+
+  create_table "items_options", id: false, force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "option_id"
+    t.index ["item_id"], name: "index_items_options_on_item_id"
+    t.index ["option_id"], name: "index_items_options_on_option_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.bigint "filter_id"
+    t.string "option_value"
+    t.index ["filter_id"], name: "index_options_on_filter_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -66,7 +91,12 @@ ActiveRecord::Schema.define(version: 2018_07_24_132622) do
 
   add_foreign_key "bookings", "items"
   add_foreign_key "bookings", "users", column: "renter_id"
+  add_foreign_key "filters", "categories"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "users", column: "owner_id"
+  add_foreign_key "items_options", "items"
+  add_foreign_key "items_options", "options"
+  add_foreign_key "options", "filters"
   add_foreign_key "reviews", "users", column: "author_id"
   add_foreign_key "users", "cities"
 end
