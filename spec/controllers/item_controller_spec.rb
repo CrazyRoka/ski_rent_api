@@ -33,13 +33,49 @@ resource ItemsController do
   end
 
   get '/api/items' do
-    let!(:ski) { create(:item, owner: user, name: 'ski') }
-    let!(:fast_ski) { create(:item, owner: user, name: 'fast_ski') }
-    let(:items) { user.extend(UserItemsRepresenter) }
+    parameter :category, 'Items category to filter', scope: :item
+    parameter :options, 'Item options', scope: :item
+    parameter :name, 'Item name filter', scope: :item
 
-    example_request 'should return all user items' do
-      expect(status).to eq(200)
-      expect(response_body).to eq(items.to_json)
+    parameter :lower_price, 'Item lower cost', scope: :item
+    parameter :upper_price, 'Item upper cost', scope: :item
+    parameter :days_number, 'Item renting duration', scope: :item
+
+    parameter :date, 'Item date availability', scope: :item
+
+    let(:boots) { create(:category, name: 'boots') }
+    let(:skies) { create(:category, name: 'skies') }
+    let!(:ski) { create(:item, owner: user, name: 'ski', category: skies) }
+    let!(:fast_ski) { create(:item, owner: user, name: 'fast_ski', category: skies) }
+    let!(:adidas) { create(:item, owner: user, name: 'adidas boots', category: boots) }
+
+    context 'list all user items' do
+      let(:items) { user.extend(UserItemsRepresenter) }
+
+      example_request 'should return all user items' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    context 'list filtered items by skies category' do
+      let(:category) { 'skies' }
+      let(:items) { User.new(items: (user.items & Item.of_category(category))).extend(UserItemsRepresenter) }
+
+      example_request 'should return all user skies' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    context 'list filtered items by boots category' do
+      let(:category) { 'boots' }
+      let(:items) { User.new(items: (user.items & Item.of_category(category))).extend(UserItemsRepresenter) }
+
+      example_request 'should return all user boots' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
     end
   end
 
