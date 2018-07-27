@@ -236,4 +236,25 @@ resource ItemsController do
       end
     end
   end
+
+  post '/api/items/import' do
+    parameter :csv, 'Csv with items'
+
+    context 'valid csv' do
+      let!(:owner) { create(:user, id: 100, email: 'test@email.com') }
+      let!(:csv) { File.read('/home/rostyslav/Programming/ski_rent_api/spec/csv/item.csv') }
+
+      example 'should create items' do
+        expect { do_request }.to change { Item.count }.by(4)
+        expect(status).to eq(201)
+      end
+    end
+
+    # context 'invalid csv' do
+    #   example 'should create items' do
+    #     expect { do_request }.not_to change(Item.count).by(4)
+    #     expect(status).to eq(200)
+    #   end
+    # end
+  end
 end

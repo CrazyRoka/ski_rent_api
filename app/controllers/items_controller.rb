@@ -50,6 +50,12 @@ class ItemsController < ApplicationController
     render json: item.extend(ItemRepresenter)
   end
 
+  # POST /api/items/import
+  def import
+    Item.import(params[:csv])
+    head :created
+  end
+
   private
 
   def item_params

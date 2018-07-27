@@ -1,3 +1,5 @@
+require 'csv'
+
 class Item < ApplicationRecord
   validates :name, :daily_price_cents, presence: true
 
@@ -27,5 +29,11 @@ class Item < ApplicationRecord
       .or(bookings[:end_date].lt(from_date))
       .or(bookings[:start_date].eq(nil))
     )
+  end
+
+  def self.import(csv_string)
+    CSV.parse(csv_string, headers: true) do |row|
+      item = Item.create(row.to_h)
+    end
   end
 end

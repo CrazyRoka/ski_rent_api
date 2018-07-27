@@ -111,4 +111,15 @@ describe Item do
       end
     end
   end
+
+  context 'csv' do
+    describe '.import' do
+      let!(:user) { create(:user, id: 100) }
+      let(:file_content) { File.read('/home/rostyslav/Programming/ski_rent_api/spec/csv/item.csv') }
+
+      it 'should create 3 items' do
+        expect { Item.import(file_content) }.to change { Item.count }.by(4)
+      end
+    end
+  end
 end

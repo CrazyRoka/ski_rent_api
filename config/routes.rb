@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     # post 'item/create'  => 'item#create', defaults: { format: 'json' }
     # get  'item'         => 'item#item', defaults: { format: 'json' }, as: 'item'
     # get  'items'        => 'item#items', defaults: { format: 'json' }, as: 'items'
-    resources :items
+    resources :items do
+      collection { post :import }
+    end
   end
 end
