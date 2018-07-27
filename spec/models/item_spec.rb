@@ -44,7 +44,7 @@ describe Item do
     let!(:medium_ski_size) { create(:option, filter: filter_ski_size, option_value: '60') }
 
     context 'by category' do
-      let(:items) { Item.of_category('Boots') }
+      let(:items) { Item.of_category([boots_category.id]) }
 
       it 'should return all boots' do
         expect(items.count).to eq(1)

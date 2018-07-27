@@ -1,11 +1,14 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user
-  has_scope :name
+  has_scope :with_name
   has_scope :of_category, type: :array
   has_scope :by_options, type: :array
-  # has_scope :available_in, using: %i[from_date end_date], type: :hash do |controller, scope, value|
-  #   scope.available_in(value[:from_date].to_i, value[:to_date].to_i)
-  # end
+  has_scope :by_cost, using: %i[days_number lower_price upper_price], type: :hash do |controller, scope, value|
+    scope.by_cost(*value.map(&:to_i))
+  end
+  has_scope :available_in, using: %i[from_date to_date], type: :hash do |controller, scope, value|
+    scope.available_in(Time.parse(value[0]), Time.parse(value[1]))
+  end
 
   # GET /api/item(:id)
   def show
@@ -15,7 +18,7 @@ class ItemsController < ApplicationController
 
   # GET /api/items
   def index
-    items = filter(current_user.items)
+    items = apply_scopes(current_user.items).all
     render json: User.new(items: items).extend(UserItemsRepresenter)
   end
 
@@ -32,7 +35,7 @@ class ItemsController < ApplicationController
 
   # PATCH /api/items/:id
   def update
-    item = Item.find(params[:id])
+    item = authorize Item.find(params[:id])
     if item.update(item_params)
       render json: item.extend(ItemRepresenter)
     else
@@ -50,20 +53,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:owner_id, :name, :daily_price_cents, :category, :options,
-                                 :lower_price, :upper_price, :days_number, :date)
+    params.require(:item).permit(:owner_id, :name, :daily_price_cents, :category_id, option_ids: [])
   end
-
-  def filter(items)
-    items = items.of_category(item_params[:category]) if item_params[:category]
-    items = items.with_options(item_params[:options]) if item_params[:options]
-    items = items.with_name(item_params[:name]) if item_params[:name]
-    items = items.with_cost(days_number: item_params[:category],
-                            lower_price: item_params[:lower_price],
-                            upper_price: item_params[:upper_price]
-            ) if item_params[:category] && item_params[:lower_price] && item_params[:upper_price]
-    items = items.available_in(item_params[:date]) if item_params[:date]
-    items
-  end
-
 end

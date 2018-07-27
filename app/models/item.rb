@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_one :city, through: :owner
   belongs_to :category, optional: true
 
-  scope :of_category, ->(category) { where(category: Category.find_by_name(category)) }
+  scope :of_category, ->(category_ids) { where(category_id: category_ids) }
   scope :with_name, ->(name) { where('name ILIKE ? OR name ILIKE ?', "#{name}%", "% #{name}%")}
   scope :by_options, ->(option_ids) { joins(:options).where(options: {id: option_ids}) }
   scope :by_cost, ->(days_number, lower_price, upper_price) { where((arel_table[:daily_price_cents] * days_number)

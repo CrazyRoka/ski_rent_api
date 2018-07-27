@@ -33,19 +33,17 @@ resource ItemsController do
   end
 
   get '/api/items' do
-    parameter :category, 'Items category to filter', scope: :item
-    parameter :options, 'Item options', scope: :item
-    parameter :name, 'Item name filter', scope: :item
-
-    parameter :lower_price, 'Item lower cost', scope: :item
-    parameter :upper_price, 'Item upper cost', scope: :item
-    parameter :days_number, 'Item renting duration', scope: :item
-
-    parameter :date, 'Item date availability', scope: :item
-
     let(:boots) { create(:category, name: 'boots') }
     let(:skies) { create(:category, name: 'skies') }
-    let!(:ski) { create(:item, owner: user, name: 'ski', category: skies) }
+
+    let(:size_filter) { create(:filter, category: boots, filter_name: 'size') }
+
+    let(:size_m) { create(:option, filter: size_filter, option_value: 'M') }
+    let(:size_l) { create(:option, filter: size_filter, option_value: 'L') }
+
+    let!(:booking) { Booking.create(renter: user, item: ski, start_date: Time.now, end_date: Time.now + 5.days) }
+
+    let!(:ski) { create(:item, owner: user, name: 'ski', category: skies, daily_price_cents: 100) }
     let!(:fast_ski) { create(:item, owner: user, name: 'fast_ski', category: skies) }
     let!(:adidas) { create(:item, owner: user, name: 'adidas boots', category: boots) }
 
@@ -58,9 +56,11 @@ resource ItemsController do
       end
     end
 
+    parameter :of_category, 'Items categories to filter'
+
     context 'list filtered items by skies category' do
-      let(:category) { 'skies' }
-      let(:items) { User.new(items: (user.items & Item.of_category(category))).extend(UserItemsRepresenter) }
+      let(:of_category) { [skies.id] }
+      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
 
       example_request 'should return all user skies' do
         expect(status).to eq(200)
@@ -69,10 +69,71 @@ resource ItemsController do
     end
 
     context 'list filtered items by boots category' do
-      let(:category) { 'boots' }
-      let(:items) { User.new(items: (user.items & Item.of_category(category))).extend(UserItemsRepresenter) }
+      let(:of_category) { [boots.id] }
+      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
 
       example_request 'should return all user boots' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    context 'list filtered items by boots category' do
+      let(:of_category) { [boots.id] }
+      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
+
+      example_request 'should return all user boots' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    parameter :by_options, 'Item options to filter'
+
+    context 'list filtered items by M size option' do
+      before(:each) do
+        adidas.options << size_m
+      end
+      let(:items) { User.new(items: (user.items & Item.by_options(by_options))).extend(UserItemsRepresenter) }
+      let(:by_options) { [size_m.id] }
+
+      example_request 'should return adidas' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    parameter :with_name, 'Item name to filter'
+
+    context 'list filtered items by name' do
+      let(:items) { User.new(items: (user.items & Item.with_name(with_name))).extend(UserItemsRepresenter) }
+      let(:with_name) { 'boots' }
+
+      example_request 'should return adidas' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    parameter :by_cost, 'Item cost filter'
+
+    context 'list filtered items by cost range' do
+      let(:items) { User.new(items: (user.items & Item.by_cost(*by_cost.values))).extend(UserItemsRepresenter) }
+      let(:by_cost) { {days_number: 3, lower_price: 200, upper_price: 400} }
+
+      example_request 'should return adidas' do
+        expect(status).to eq(200)
+        expect(response_body).to eq(items.to_json)
+      end
+    end
+
+    parameter :available_in, 'Item date filter'
+
+    context 'list filtered items by availability' do
+      let(:items) { User.new(items: (user.items & Item.available_in(*available_in.values))).extend(UserItemsRepresenter) }
+      let(:available_in) { {from_date: Time.now, to_date: Time.now + 3.days} }
+
+      example_request 'should return all except ski' do
         expect(status).to eq(200)
         expect(response_body).to eq(items.to_json)
       end
@@ -149,14 +210,29 @@ resource ItemsController do
     parameter :name, "Item name", scope: :item
     parameter :daily_price_cents, "Item daily price", scope: :item
 
+    let!(:name) { 'example' }
+    let!(:daily_price_cents) { 300 }
+
     context 'create item' do
-      let!(:name) { 'example' }
-      let!(:daily_price_cents) { 300 }
+      example '201' do
+        expect { do_request }.to change { Item.count }.by(1)
+        expect(status).to eq(201)
+        expect(response_body).to eq(Item.last.extend(ItemRepresenter).to_json)
+      end
+    end
+
+    parameter :category_id, "Item category", scope: :item
+    parameter :option_ids, "Item options", scope: :item
+
+    context 'create item with category and options' do
+      let!(:category_id) { create(:category).id }
+      let!(:option_ids) { [create(:option).id, create(:option).id] }
 
       example '201' do
         expect { do_request }.to change { Item.count }.by(1)
         expect(status).to eq(201)
         expect(response_body).to eq(Item.last.extend(ItemRepresenter).to_json)
+        expect(Item.last.options.map(&:id)).to eq(option_ids)
       end
     end
   end
