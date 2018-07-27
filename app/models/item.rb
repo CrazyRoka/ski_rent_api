@@ -33,7 +33,7 @@ class Item < ApplicationRecord
 
   def self.import(csv_string)
     CSV.parse(csv_string, headers: true) do |row|
-      item = Item.create(row.to_h)
+      Item.create(row.to_h)
     end
   end
 end
