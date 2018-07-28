@@ -72,7 +72,7 @@ resource UserController do
 
     context 'user profile' do
       example_request 'should return user info' do
-        expect(response.status).to eq(200)
+        expect(status).to eq(200)
         expect(response_body).to eq(user.extend(UserRepresenter).to_json)
       end
     end

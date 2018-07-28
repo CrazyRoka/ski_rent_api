@@ -242,7 +242,7 @@ resource ItemsController do
 
     context 'valid csv' do
       let!(:owner) { create(:user, id: 100, email: 'test@email.com') }
-      let!(:csv) { File.read('/home/rostyslav/Programming/ski_rent_api/spec/csv/item.csv') }
+      let!(:csv) { File.read(Rails.root.join('spec', 'csv', 'item.csv')) }
 
       example 'should create items' do
         expect { do_request }.to change { Item.count }.by(4)
