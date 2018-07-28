@@ -1,0 +1,53 @@
+{
+  "resource": "UserController",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "/api/sign_up",
+  "description": "should be 201",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "scope": "user",
+      "name": "email",
+      "description": "User email"
+    },
+    {
+      "required": true,
+      "scope": "user",
+      "name": "password",
+      "description": "User password"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/api/sign_up",
+      "request_body": "{\"user\":{\"email\":\"some@email.com\",\"password\":\"example\"}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 201,
+      "response_status_text": "Created",
+      "response_body": "{\n  \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjJ9.DRI0efpIIo2Mra2XoVBuSu_BRQaeFPTuJ91LTHbKqsI\"\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"42bfc50cefc1a51b3db712599d5695ae\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "d1e8d107-1efe-47a3-a96a-d5b044dc0eb6",
+        "X-Runtime": "0.008380",
+        "Content-Length": "127"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "DELETE",
+  "route": "/api/items/:id",
+  "description": "authorization fail",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "item",
+      "name": "id",
+      "description": "Item id"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "DELETE",
+      "request_path": "/api/items/31",
+      "request_body": "{\"item\":{\"id\":31}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6MTh9.IV5zFQybfQxt9oasxtMrMViySd1fTLkRkLx7b0GpNf8",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 403,
+      "response_status_text": "Forbidden",
+      "response_body": null,
+      "response_headers": {
+        "Content-Type": "text/html",
+        "Cache-Control": "no-cache",
+        "X-Request-Id": "5cea6011-004f-41f8-8482-aa7a811b9971",
+        "X-Runtime": "0.004509",
+        "Content-Length": "0"
+      },
+      "response_content_type": "text/html",
+      "curl": null
+    }
+  ]
+}

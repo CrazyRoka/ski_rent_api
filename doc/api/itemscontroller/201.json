@@ -1,0 +1,62 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "/api/items",
+  "description": "201",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "item",
+      "name": "name",
+      "description": "Item name"
+    },
+    {
+      "scope": "item",
+      "name": "daily_price_cents",
+      "description": "Item daily price"
+    },
+    {
+      "scope": "item",
+      "name": "category_id",
+      "description": "Item category"
+    },
+    {
+      "scope": "item",
+      "name": "option_ids",
+      "description": "Item options"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/api/items",
+      "request_body": "{\"item\":{\"name\":\"example\",\"daily_price_cents\":300,\"category_id\":24,\"option_ids\":[2,3]}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjB9.khp19HdHwKkA-hTlsX3JeeRs-_G4vcRWQUssHfNS8Jo",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 201,
+      "response_status_text": "Created",
+      "response_body": "{\n  \"id\": 33,\n  \"name\": \"example\",\n  \"daily_price_cents\": 300\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"d36218a6228b9649dfac6788d23ebb2c\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "d9fdcfd2-4623-4e33-a4ef-700450af98b7",
+        "X-Runtime": "0.016400",
+        "Content-Length": "50"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

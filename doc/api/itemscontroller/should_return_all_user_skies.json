@@ -1,0 +1,65 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/items",
+  "description": "should return all user skies",
+  "explanation": null,
+  "parameters": [
+    {
+      "name": "of_category",
+      "description": "Items categories to filter"
+    },
+    {
+      "name": "by_options",
+      "description": "Item options to filter"
+    },
+    {
+      "name": "with_name",
+      "description": "Item name to filter"
+    },
+    {
+      "name": "by_cost",
+      "description": "Item cost filter"
+    },
+    {
+      "name": "available_in",
+      "description": "Item date filter"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/items?of_category[]=5",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6NX0.ClOJ49aRvxEtu65l2vgtUnIrUsKnezm0FWHnOU0b6cA",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "of_category": [
+          "5"
+        ]
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 6,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100\n    },\n    {\n      \"id\": 7,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"ff4f4691ab6848c4250bd5a7b102d7e6\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "20846cfd-9a7f-4c26-a0f3-497d121ca4de",
+        "X-Runtime": "0.005935",
+        "Content-Length": "108"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

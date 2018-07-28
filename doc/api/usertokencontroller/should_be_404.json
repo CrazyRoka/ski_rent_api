@@ -1,0 +1,58 @@
+{
+  "resource": "UserTokenController",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "/api/user_token",
+  "description": "should be 404",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "scope": "auth",
+      "name": "email",
+      "description": "User email"
+    },
+    {
+      "required": true,
+      "scope": "auth",
+      "name": "password",
+      "description": "User password"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/api/user_token",
+      "request_body": "{\"auth\":{\"email\":\"j@email.com\",\"password\":\"something else\"}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 404,
+      "response_status_text": "Not Found",
+      "response_body": null,
+      "response_headers": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Content-Type": "text/html",
+        "Cache-Control": "no-cache",
+        "X-Request-Id": "5817ed23-4dae-4c8b-ae7b-a02eb9cd8c78",
+        "X-Runtime": "0.002593",
+        "Content-Length": "0"
+      },
+      "response_content_type": "text/html",
+      "curl": null
+    }
+  ]
+}

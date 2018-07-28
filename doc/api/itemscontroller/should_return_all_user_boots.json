@@ -1,0 +1,65 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/items",
+  "description": "should return all user boots",
+  "explanation": null,
+  "parameters": [
+    {
+      "name": "of_category",
+      "description": "Items categories to filter"
+    },
+    {
+      "name": "by_options",
+      "description": "Item options to filter"
+    },
+    {
+      "name": "with_name",
+      "description": "Item name to filter"
+    },
+    {
+      "name": "by_cost",
+      "description": "Item cost filter"
+    },
+    {
+      "name": "available_in",
+      "description": "Item date filter"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/items?of_category[]=10",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6N30.BOKtGeJ9AB2aWm2CtzThUAo6elW2LKP1xtC3LKISLGE",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "of_category": [
+          "10"
+        ]
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 14,\n      \"name\": \"adidas boots\",\n      \"daily_price_cents\": 400\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"db30a1aba8fe4c7f605447f114720462\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "da84af6c-5b0f-406c-a89f-50764fb329b3",
+        "X-Runtime": "0.005061",
+        "Content-Length": "67"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

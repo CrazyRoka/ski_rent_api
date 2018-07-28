@@ -1,0 +1,47 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "DELETE",
+  "route": "/api/items/:id",
+  "description": "200",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "item",
+      "name": "id",
+      "description": "Item id"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "DELETE",
+      "request_path": "/api/items/30",
+      "request_body": "{\"item\":{\"id\":30}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6MTZ9.QB7Clic2LWPIckF98OmV-kpjRry9Z7gcEObYqtxM02U",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"id\": 30,\n  \"name\": \"ski\",\n  \"daily_price_cents\": 400\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"06d4aa3aa050091cd191f52388b0abc7\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "e1ccb7eb-11c6-41d6-b2bc-f48a188a946f",
+        "X-Runtime": "0.016936",
+        "Content-Length": "46"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

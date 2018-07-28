@@ -1,0 +1,52 @@
+{
+  "resource": "UserController",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "/api/sign_up",
+  "description": "should be 404",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "scope": "user",
+      "name": "email",
+      "description": "User email"
+    },
+    {
+      "required": true,
+      "scope": "user",
+      "name": "password",
+      "description": "User password"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/api/sign_up",
+      "request_body": "{\"user\":{\"email\":\"some@email.com\",\"password\":\"example\"}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 404,
+      "response_status_text": "Not Found",
+      "response_body": null,
+      "response_headers": {
+        "Content-Type": "text/html",
+        "Cache-Control": "no-cache",
+        "X-Request-Id": "eb28a35b-9ff7-4256-a073-c7157604ffe3",
+        "X-Runtime": "0.007895",
+        "Content-Length": "0"
+      },
+      "response_content_type": "text/html",
+      "curl": null
+    }
+  ]
+}

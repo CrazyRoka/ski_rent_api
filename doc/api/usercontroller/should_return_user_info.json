@@ -1,0 +1,44 @@
+{
+  "resource": "UserController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/users/me",
+  "description": "should return user info",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/users/me",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6Mjd9.B5kC27FuSXmYnCBt9HEFzwkILptpwPeBQNVGuhZXjKo",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "{}": null
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"name\": \"John\",\n  \"email\": \"john@email.com\"\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"583816d92024fbc5e59c8ec2a5df9b2b\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "643f6039-41a0-4f58-b01d-564e0afb2c63",
+        "X-Runtime": "0.004324",
+        "Content-Length": "40"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

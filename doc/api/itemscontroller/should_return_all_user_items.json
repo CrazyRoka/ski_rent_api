@@ -1,0 +1,44 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/items",
+  "description": "should return all user items",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/items",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6NH0.UfooHn2Hx0jQ5mgGAutTAVDkmokj3jfQWVJYtQDEvPY",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "{}": null
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 3,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100\n    },\n    {\n      \"id\": 4,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400\n    },\n    {\n      \"id\": 5,\n      \"name\": \"adidas boots\",\n      \"daily_price_cents\": 400\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"a73c0dbf7e4e5e485a758c954251736b\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "30957072-fffd-4246-9e1e-5f083529673b",
+        "X-Runtime": "0.008218",
+        "Content-Length": "163"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

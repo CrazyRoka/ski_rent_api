@@ -1,0 +1,54 @@
+{
+  "resource": "UserController",
+  "resource_explanation": null,
+  "http_method": "PATCH",
+  "route": "api/users",
+  "description": "return updated user",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": false,
+      "scope": "user",
+      "name": "name",
+      "description": "User name"
+    },
+    {
+      "required": false,
+      "scope": "user",
+      "name": "city_id",
+      "description": "Users city id"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PATCH",
+      "request_path": "api/users",
+      "request_body": "{\"user\":{\"name\":\"NewName\",\"city_id\":28}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjZ9.xfdWlqXFo-p_auSGjR3s8f1DIAIju8oYOrhwdOxuPWA",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"name\": \"NewName\",\n  \"email\": \"john@email.com\"\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"f9145071f2ebb626fcc34ab01d425a13\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "c0908d52-78d9-4d18-ac8a-c03425a22757",
+        "X-Runtime": "0.007974",
+        "Content-Length": "43"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}
