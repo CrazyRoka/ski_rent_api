@@ -20,6 +20,8 @@ class CreateMoneyTransaction
   end
 
   def create(input)
-    Success(MoneyTransaction.create(input))
+    money_transaction = MoneyTransaction.create(input)
+    return Success(money_transaction) if money_transaction.persisted?
+    Failure("Can't create money transaction")
   end
 end
