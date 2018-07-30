@@ -22,7 +22,7 @@
       "request_body": "{\"item\":{\"id\":30}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6MTZ9.QB7Clic2LWPIckF98OmV-kpjRry9Z7gcEObYqtxM02U",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MTZ9.0oXYwCpoqYBo6wmbP5hvpmubNhF9nYcB3_0k7uJPp68",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -36,8 +36,8 @@
         "Content-Type": "application/json; charset=utf-8",
         "ETag": "W/\"06d4aa3aa050091cd191f52388b0abc7\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "e1ccb7eb-11c6-41d6-b2bc-f48a188a946f",
-        "X-Runtime": "0.016936",
+        "X-Request-Id": "2baa2277-75c9-463c-bcc4-2f2f763c1493",
+        "X-Runtime": "0.021826",
         "Content-Length": "46"
       },
       "response_content_type": "application/json; charset=utf-8",

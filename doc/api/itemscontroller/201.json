@@ -37,7 +37,7 @@
       "request_body": "{\"item\":{\"name\":\"example\",\"daily_price_cents\":300,\"category_id\":24,\"option_ids\":[2,3]}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjB9.khp19HdHwKkA-hTlsX3JeeRs-_G4vcRWQUssHfNS8Jo",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjB9.31LgAS66LdFJNAHcPybN2g2sUJSzLRB0DI76AoMFv1I",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -51,8 +51,8 @@
         "Content-Type": "application/json; charset=utf-8",
         "ETag": "W/\"d36218a6228b9649dfac6788d23ebb2c\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "d9fdcfd2-4623-4e33-a4ef-700450af98b7",
-        "X-Runtime": "0.016400",
+        "X-Request-Id": "008f0eaf-68f6-43a1-bf03-08e8153deaa0",
+        "X-Runtime": "0.015399",
         "Content-Length": "50"
       },
       "response_content_type": "application/json; charset=utf-8",

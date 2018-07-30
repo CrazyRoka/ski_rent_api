@@ -21,7 +21,7 @@
       "request_body": "{\"csv\":\"id,name,daily_price_cents,owner_id\\n9,ski,400,100\\n10,fast ski,1000,100\\n11,slow ski,300,100\\n12,boot,300,100\\n\"}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjF9.adds5hW1SfMpvxG_Sirab7H-L2WZJH2blmRDvPskSV4",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjF9.bGUr5J5_8L6mLe4rkoOcHbQ9B6QiZvVAfwp2tDM7x6Q",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -34,8 +34,8 @@
       "response_headers": {
         "Content-Type": "text/html",
         "Cache-Control": "no-cache",
-        "X-Request-Id": "7a57ec5e-6a02-4670-ba0d-4b840532b116",
-        "X-Runtime": "0.016577",
+        "X-Request-Id": "25b44d64-326f-430d-bd56-340cf9805dc9",
+        "X-Runtime": "0.019986",
         "Content-Length": "0"
       },
       "response_content_type": "text/html",

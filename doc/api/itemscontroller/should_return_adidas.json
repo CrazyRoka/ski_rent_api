@@ -37,7 +37,7 @@
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6MTB9.M2jS_akr08ImWEinmx3EoXLU1GVNGAyqqcTIRoXrIN8",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTIsInN1YiI6MTB9.gAul2TLY7KUhhZMSrpdkXeDvJ8KCRo09HBUa6E3vYD8",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -56,8 +56,8 @@
         "Content-Type": "application/json; charset=utf-8",
         "ETag": "W/\"a710b58e5e40793e7d235b74fa0fd6b8\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "7cb3796a-aa53-4bb4-a500-b63c74465be9",
-        "X-Runtime": "0.006063",
+        "X-Request-Id": "4dda5064-5ced-487e-81f3-4e7f977033d2",
+        "X-Runtime": "0.005673",
         "Content-Length": "58"
       },
       "response_content_type": "application/json; charset=utf-8",

@@ -22,7 +22,7 @@
       "request_body": "{\"item\":{\"id\":31}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODMsInN1YiI6MTh9.IV5zFQybfQxt9oasxtMrMViySd1fTLkRkLx7b0GpNf8",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MTh9.ZfC4FFo01SaLhOuU5rUstNsHJsim4-0Oc9aK7yH6dH4",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -35,8 +35,8 @@
       "response_headers": {
         "Content-Type": "text/html",
         "Cache-Control": "no-cache",
-        "X-Request-Id": "5cea6011-004f-41f8-8482-aa7a811b9971",
-        "X-Runtime": "0.004509",
+        "X-Request-Id": "489c5b60-b959-477c-bbc1-5b1f8ac9ecb4",
+        "X-Runtime": "0.004774",
         "Content-Length": "0"
       },
       "response_content_type": "text/html",

@@ -7,6 +7,7 @@ FactoryBot.define do
     name     'John'
     email    'john@email.com'
     password 'example'
+    balance  1000
     city     { build(:city) }
   end
 
@@ -29,5 +30,12 @@ FactoryBot.define do
     category        { create(:category) }
     name              'ski'
     daily_price_cents 400
+  end
+
+  factory :transaction, class: MoneyTransaction do
+    payer           { create(:user) }
+    payee           { create(:user, email: 'something@else.com') }
+    target          { create(:item, owner: payee) }
+    payment_cents     500
   end
 end

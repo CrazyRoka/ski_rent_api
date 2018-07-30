@@ -29,7 +29,7 @@
       "request_body": "{\"user\":{\"name\":\"NewName\",\"city_id\":24}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6MjR9.75Nl8zbU1u3sl-8scSMufnIvlPRWa9XCc4SW2R-PMMM",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjR9.ar6Uv4K9DhC95Q3dELRnN5Pxj9S_uoOotxvg5cX_2is",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -43,8 +43,8 @@
         "Content-Type": "application/json; charset=utf-8",
         "ETag": "W/\"f9145071f2ebb626fcc34ab01d425a13\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "e6baa998-bdfd-4323-8016-e9b0ab893d64",
-        "X-Runtime": "0.009273",
+        "X-Request-Id": "49d5ce5e-0868-4c0e-941e-9cd7e1f2dba7",
+        "X-Runtime": "0.016440",
         "Content-Length": "43"
       },
       "response_content_type": "application/json; charset=utf-8",

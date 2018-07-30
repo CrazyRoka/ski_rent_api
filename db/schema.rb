@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_26_091221) do
+ActiveRecord::Schema.define(version: 2018_07_30_105111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 2018_07_26_091221) do
     t.index ["option_id"], name: "index_items_options_on_option_id"
   end
 
+  create_table "money_transactions", force: :cascade do |t|
+    t.bigint "payer_id"
+    t.bigint "payee_id"
+    t.string "target_type"
+    t.bigint "target_id"
+    t.integer "payment_cents"
+    t.index ["payee_id"], name: "index_money_transactions_on_payee_id"
+    t.index ["payer_id"], name: "index_money_transactions_on_payer_id"
+    t.index ["target_type", "target_id"], name: "index_money_transactions_on_target_type_and_target_id"
+  end
+
   create_table "options", force: :cascade do |t|
     t.bigint "filter_id"
     t.string "option_value"
@@ -85,6 +96,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_091221) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "city_id"
+    t.integer "balance"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
@@ -96,6 +108,8 @@ ActiveRecord::Schema.define(version: 2018_07_26_091221) do
   add_foreign_key "items", "users", column: "owner_id"
   add_foreign_key "items_options", "items"
   add_foreign_key "items_options", "options"
+  add_foreign_key "money_transactions", "users", column: "payee_id"
+  add_foreign_key "money_transactions", "users", column: "payer_id"
   add_foreign_key "options", "filters"
   add_foreign_key "reviews", "users", column: "author_id"
   add_foreign_key "users", "cities"

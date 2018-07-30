@@ -37,7 +37,7 @@
       "request_content_type": "application/json",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzI4NjU2ODQsInN1YiI6Mjh9.O13Aug01CwPfhiJbv4kbP2bnLybREIR157rmSc7PYeI\"\n}",
+      "response_body": "{\n  \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6Mjh9.qEZJqSWqLk6OYPfou_PyblyIKbX2wXDl_GYFEGVyRIE\"\n}",
       "response_headers": {
         "X-Frame-Options": "SAMEORIGIN",
         "X-XSS-Protection": "1; mode=block",
@@ -46,10 +46,10 @@
         "X-Permitted-Cross-Domain-Policies": "none",
         "Referrer-Policy": "strict-origin-when-cross-origin",
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"ebc79816744da411f6a38f61ed181a1a\"",
+        "ETag": "W/\"9ab071227de9279bcc7441fcb1a141f0\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "2f4e98b9-515a-4f78-96f2-3c7484e90bd0",
-        "X-Runtime": "0.014902",
+        "X-Request-Id": "64348a3d-da4d-4b26-8ef8-480dbdb08372",
+        "X-Runtime": "0.016962",
         "Content-Length": "127"
       },
       "response_content_type": "application/json; charset=utf-8",
