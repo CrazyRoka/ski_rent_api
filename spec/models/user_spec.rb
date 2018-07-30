@@ -47,32 +47,30 @@ describe User do
     end
   end
 
-  context 'transactions' do
-    let(:payer) { create(:user, email: 'payer@gmail.com', balance: 1000) }
-    let(:payee) { create(:user, email: 'payee@gmail.com', balance: 100) }
+  context 'transaction' do
+    let(:create_transaction) do
+      CreateMoneyTransaction.new.call(payer: payer, payee: payee,
+                                      payment_cents: 150, target: item)
+    end
+    let(:payee) { create(:user, email: 'test@email.com', balance: 0) }
+    let(:payer) { create(:user, email: 'something_else@email.com', balance: 200) }
+    let(:item) { create(:item, owner: payee) }
 
-    context 'valid money transaction' do
-
-      it 'should translate money from payer to payee' do
-        payer.pay_to(payee, 200)
-        expect(payer.balance).to eq(800)
-        expect(payee.balance).to eq(300)
-      end
-
-      it 'should translate money from payee to payer' do
-        payee.pay_to(payer, 100)
-        expect(payer.balance).to eq(1100)
-        expect(payee.balance).to eq(0)
+    context 'user have enough money' do
+      it 'should perform transaction' do
+        expect { create_transaction }.to change { MoneyTransaction.count }.by(1)
+        expect(payer.reload.balance).to eq(50)
+        expect(payee.reload.balance).to eq(150)
       end
     end
 
-    context 'invalid money transaction' do
+    context 'user have not enough money' do
+      before { payer.balance = 100; payer.save }
 
-      it 'should not translate money' do
-        expect { payer.pay_to(payee, 1001) }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { payee.pay_to(payer, 101) }.to raise_error(ActiveRecord::RecordInvalid)
-        expect(payer.reload.balance).to eq(1000)
-        expect(payee.reload.balance).to eq(100)
+      it 'should not perform transaction' do
+        expect { create_transaction }.to change { MoneyTransaction.count }.by(0)
+        expect(payer.reload.balance).to eq(100)
+        expect(payee.reload.balance).to eq(0)
       end
     end
   end

@@ -13,6 +13,7 @@ Review.destroy_all
 mountain = City.create(name: 'mountain')
 beach = City.create(name: 'beach')
 
+ghost = User.create(name: 'Ghost', password: 'My_name_is_Ghost', email: 'ghost@email.com', city: mountain, balance: 0)
 john = User.create(name: 'John', password: 'My_name_is_John', email: 'john@email.com', city: mountain, balance: 1000)
 maria = User.create(name: 'Maria', password: 'My_name_is_Maria', email: 'maria@email.com', city: beach, balance: 500)
 din = User.create(name: 'Din', password: 'My_name_is_Din', email: 'din@email.com', city: beach, balance: 250)

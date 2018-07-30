@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   validates :email, :password_digest, presence: true
   validates :email, uniqueness: true
-  validates :balance, numericality: { greater_than_or_equal_to: 0 }
+
+  before_destroy :conserve_transactions
 
   has_many :items, foreign_key: 'owner_id', dependent: :destroy
   has_many :reviews, foreign_key: 'author_id', dependent: :destroy
@@ -14,19 +15,6 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def pay_to(user, money)
-    ans = user.transaction do
-      withdrawal(money)
-      user.deposit(money)
-    end
-  end
-
-  before_validation(on: :create) do
-    self.balance ||= 0
-  end
-
-  protected
-
   def withdrawal(money)
     self.balance -= money
     save!
@@ -36,4 +24,20 @@ class User < ApplicationRecord
     self.balance += money
     save!
   end
+
+  private
+
+  def conserve_transactions
+    ghost = User.find_by_email('ghost@email.com')
+    payed_transactions.each do |transaction|
+      transaction.payer = ghost
+      transaction.save
+    end
+
+    received_transactions.each do |transaction|
+      transaction.payee = ghost
+      transaction.save
+    end
+  end
+
 end
