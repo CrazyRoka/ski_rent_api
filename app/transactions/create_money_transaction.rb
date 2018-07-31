@@ -16,12 +16,10 @@ class CreateMoneyTransaction
       input[:payee].deposit(input[:payment_cents])
     end
     return Success(input) if transaction
-    Failure("Failure in performing transaction")
+    Failure('Failure in performing transaction')
   end
 
   def create(input)
-    money_transaction = MoneyTransaction.create(input)
-    return Success(money_transaction) if money_transaction.persisted?
-    Failure("Can't create money transaction")
+    Success(MoneyTransaction.create!(input))
   end
 end

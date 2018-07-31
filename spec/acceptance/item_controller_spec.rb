@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource ItemsController do
-  header "Content-Type", "application/json"
+  header 'Content-Type', 'application/json'
   header 'Authorization', :authorization_header
 
   let(:raw_post) { params.to_json }
@@ -140,8 +140,8 @@ resource ItemsController do
     end
   end
 
+  parameter :name, "Item name", scope: :item
   patch '/api/items/:id' do
-    parameter :name, "Item name", scope: :item
     parameter :daily_price_cents, "Item daily price", scope: :item
     parameter :owner_id, "Item owner id", scope: :item
 
