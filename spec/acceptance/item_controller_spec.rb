@@ -221,8 +221,8 @@ resource ItemsController do
       end
     end
 
-    parameter :category_id, "Item category", scope: :item
-    parameter :option_ids, "Item options", scope: :item
+    parameter :category_id, 'Item category', scope: :item
+    parameter :option_ids, 'Item options', scope: :item
 
     context 'create item with category and options' do
       let!(:category_id) { create(:category).id }
