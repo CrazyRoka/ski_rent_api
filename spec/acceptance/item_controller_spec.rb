@@ -41,7 +41,7 @@ resource ItemsController do
     let(:size_m) { create(:option, filter: size_filter, option_value: 'M') }
     let(:size_l) { create(:option, filter: size_filter, option_value: 'L') }
 
-    let!(:booking) { Booking.create(renter: user, item: ski, start_date: Time.now, end_date: Time.now + 5.days) }
+    let!(:booking) { Booking.create(renter: user, item: ski, start_date: Time.now, end_date: 5.days.from_now) }
 
     let!(:ski) { create(:item, owner: user, name: 'ski', category: skies, daily_price_cents: 100) }
     let!(:fast_ski) { create(:item, owner: user, name: 'fast_ski', category: skies) }
@@ -91,9 +91,7 @@ resource ItemsController do
     parameter :by_options, 'Item options to filter'
 
     context 'list filtered items by M size option' do
-      before(:each) do
-        adidas.options << size_m
-      end
+      before(:each) { adidas.options << size_m }
       let(:items) { User.new(items: (user.items & Item.by_options(by_options))).extend(UserItemsRepresenter) }
       let(:by_options) { [size_m.id] }
 
@@ -131,7 +129,7 @@ resource ItemsController do
 
     context 'list filtered items by availability' do
       let(:items) { User.new(items: (user.items & Item.available_in(*available_in.values))).extend(UserItemsRepresenter) }
-      let(:available_in) { {from_date: Time.now, to_date: Time.now + 3.days} }
+      let(:available_in) { {from_date: Time.now, to_date: 3.days.from_now} }
 
       example_request 'should return all except ski' do
         expect(status).to eq(200)
@@ -140,10 +138,11 @@ resource ItemsController do
     end
   end
 
-  parameter :name, "Item name", scope: :item
+  parameter :name, 'Item name', scope: :item
+
   patch '/api/items/:id' do
-    parameter :daily_price_cents, "Item daily price", scope: :item
-    parameter :owner_id, "Item owner id", scope: :item
+    parameter :daily_price_cents, 'Item daily price', scope: :item
+    parameter :owner_id, 'Item owner id', scope: :item
 
     let(:item) { create(:item, owner: user) }
     let(:id) { item.id }
@@ -187,7 +186,7 @@ resource ItemsController do
       let(:item) { create(:item, owner: user) }
       let!(:id) { item.id }
 
-      example '200' do
+      example 'ok' do
         expect { do_request }.to change { Item.count }.by(-1)
         expect(status).to eq(200)
         expect(response_body).to eq(item.extend(ItemRepresenter).to_json)
@@ -207,8 +206,8 @@ resource ItemsController do
   end
 
   post '/api/items' do
-    parameter :name, "Item name", scope: :item
-    parameter :daily_price_cents, "Item daily price", scope: :item
+    parameter :name, 'Item name', scope: :item
+    parameter :daily_price_cents, 'Item daily price', scope: :item
 
     let!(:name) { 'example' }
     let!(:daily_price_cents) { 300 }
@@ -241,20 +240,20 @@ resource ItemsController do
     parameter :csv, 'Csv with items'
 
     context 'valid csv' do
-      let!(:owner) { create(:user, id: 100, email: 'test@email.com') }
       let!(:csv) { File.read(Rails.root.join('spec', 'csv', 'item.csv')) }
 
-      example 'should create items' do
+      it 'should create items' do
         expect { do_request }.to change { Item.count }.by(4)
         expect(status).to eq(201)
       end
     end
 
-    # context 'invalid csv' do
-    #   example 'should create items' do
-    #     expect { do_request }.not_to change(Item.count).by(4)
-    #     expect(status).to eq(200)
-    #   end
-    # end
+    context 'invalid csv' do
+      let!(:csv) { "some csv" }
+      it 'not acceptable' do
+        expect { do_request }.not_to change{ Item.count }
+        expect(status).to eq(406)
+      end
+    end
   end
 end

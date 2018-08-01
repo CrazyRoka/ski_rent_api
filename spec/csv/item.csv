@@ -1,5 +1,5 @@
-id,name,daily_price_cents,owner_id
-9,ski,400,100
-10,fast ski,1000,100
-11,slow ski,300,100
-12,boot,300,100
+id,name,daily_price_cents
+9,ski,400
+10,fast ski,1000
+11,slow ski,300
+12,boot,300

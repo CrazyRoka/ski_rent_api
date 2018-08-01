@@ -110,12 +110,15 @@ describe Item do
   end
 
   context 'csv' do
-    describe '.import' do
-      let!(:user) { create(:user, id: 100) }
+    context 'import items from csv' do
+      let!(:user) { create(:user) }
       let(:file_content) { File.read(Rails.root.join('spec', 'csv', 'item.csv')) }
 
-      it 'should create 3 items' do
-        expect { described_class.import(file_content) }.to change { described_class.count }.by(4)
+      it 'should create 4 items' do
+        expect do
+          ImportItemsCsv.new.with_step_args(validate: [user: user])
+                        .call(file_content)
+        end.to change { described_class.count }.by(4)
       end
     end
   end

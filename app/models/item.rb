@@ -34,10 +34,4 @@ class Item < ApplicationRecord
       .or(bookings[:start_date].eq(nil))
     )
   end
-
-  def self.import(csv_string)
-    CSV.parse(csv_string, headers: true) do |row|
-      Item.create(row.to_h)
-    end
-  end
 end

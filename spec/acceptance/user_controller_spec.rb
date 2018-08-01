@@ -45,7 +45,7 @@ resource UserController do
     end
 
     context 'valid params' do
-      let(:city_id) { create(:city, name: 'mountain').id }
+      let(:city_id) { create(:city, name: 'Havana').id }
       let(:name) { 'NewName' }
 
       example_request 'should update name' do

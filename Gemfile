@@ -52,13 +52,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'knock'
-gem 'multi_json'
-gem 'roar'
-gem 'responders'
-gem 'roar-rails'
-gem 'pundit'
-gem 'has_scope'
 gem 'apitome'
 gem 'dry-monads'
 gem 'dry-transaction'
+gem 'has_scope'
+gem 'knock'
+gem 'multi_json'
+gem 'pundit'
+gem 'responders'
+gem 'roar'
+gem 'roar-rails'
+gem 'activerecord-import'

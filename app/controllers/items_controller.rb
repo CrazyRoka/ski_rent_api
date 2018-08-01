@@ -55,8 +55,14 @@ class ItemsController < ApplicationController
 
   # POST /api/items/import
   def import
-    Item.import(params[:csv])
-    head :created
+    answer = ImportItemsCsv.new
+                           .with_step_args(validate: [user: current_user])
+                           .call(params[:csv])
+    if answer.success?
+      head :created
+    else
+      render json: { error: answer.failure }, status: :not_acceptable
+    end
   end
 
   private
