@@ -7,14 +7,11 @@ class Review < ApplicationRecord
   def author_has_permissions_to_review
     case reviewable_type
     when 'User'
-      items = reviewable.items
-      if items.none? { |item| item.bookings.any? { |booking| booking.renter == author } }
-        errors.add(:author, 'author didn`t deal with this item owner before')
-      end
+      bookings = Booking.where(renter: author).where(item: reviewable.items)
+      errors.add(:author, 'bad item history') if bookings.empty?
     when 'Item'
-      item = reviewable
-      unless item.bookings.any? { |booking| booking.renter == author }
-        errors.add(:author, 'author didn`t book this item before`')
+      if Booking.where(renter: author).where(item: reviewable).empty?
+        errors.add(:author, 'bad item history')
       end
     end
   end

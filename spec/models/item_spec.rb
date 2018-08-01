@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Item do
   context 'relationship' do
-    subject(:item) { Item.new }
+    subject(:item) { described_class.new }
     it 'should have many bookings' do
       expect { item.bookings.build }.not_to raise_error
     end
@@ -40,11 +40,8 @@ describe Item do
     let(:filter_boot_size) { create(:filter, filter_name: 'size', category: boots_category) }
     let(:filter_ski_size) { create(:filter, filter_name: 'size', category: ski_category) }
 
-    let!(:medium_boot_size) { create(:option, filter: filter_boot_size, option_value: '40') }
-    let!(:medium_ski_size) { create(:option, filter: filter_ski_size, option_value: '60') }
-
     context 'by category' do
-      let(:items) { Item.of_category([boots_category.id]) }
+      let(:items) { described_class.of_category([boots_category.id]) }
 
       it 'should return all boots' do
         expect(items.count).to eq(1)
@@ -53,8 +50,8 @@ describe Item do
     end
 
     context 'by name' do
-      let(:skies_items) { Item.with_name('ski') }
-      let(:items_with_o) { Item.with_name('o') }
+      let(:skies_items) { described_class.with_name('ski') }
+      let(:items_with_o) { described_class.with_name('o') }
 
       it 'should return all skies' do
         expect(skies_items.count).to eq(1)
@@ -67,12 +64,12 @@ describe Item do
     end
 
     context 'by options' do
+      let!(:medium_boot_size) { create(:option, filter: filter_boot_size, option_value: '40') }
+      let!(:medium_ski_size) { create(:option, filter: filter_ski_size, option_value: '60') }
       let(:medium_size_boots) do
         ski.options << medium_ski_size
         boot.options << medium_boot_size
-        ski.save
-        boot.save
-        Item.by_options([medium_boot_size.id])
+        described_class.by_options([medium_boot_size.id])
       end
 
       it 'should return medium boots' do
@@ -83,14 +80,14 @@ describe Item do
 
     context 'by price range' do
       it 'should return items with suitable cost' do
-        expect(Item.by_cost(3, 800, 1400).count).to eq(2)
-        expect(Item.by_cost(3, 900, 1199).count).to eq(1)
-        expect(Item.by_cost(3, 901, 1200).count).to eq(1)
-        expect(Item.by_cost(2, 100, 200).count).to eq(0)
+        expect(described_class.by_cost(3, 800, 1400).count).to eq(2)
+        expect(described_class.by_cost(3, 900, 1199).count).to eq(1)
+        expect(described_class.by_cost(3, 901, 1200).count).to eq(1)
+        expect(described_class.by_cost(2, 100, 200).count).to eq(0)
       end
 
       it 'should return zero on swapped ranges' do
-        expect(Item.by_cost(3, 1400, 800).count).to eq(0)
+        expect(described_class.by_cost(3, 1400, 800).count).to eq(0)
       end
     end
 
@@ -101,13 +98,13 @@ describe Item do
       end
 
       it 'should return items, available between dates' do
-        items = Item.available_in(Time.now + 1.day, Time.now + 2.day)
+        items = described_class.available_in(Time.now + 1.day, Time.now + 2.day)
         expect(items.count).to eq(1)
         expect(items.include?(boot)).to eq(true)
 
-        expect(Item.available_in(Time.now + 4.day, Time.now + 5.days).count).to eq(2)
+        expect(described_class.available_in(Time.now + 4.day, Time.now + 5.days).count).to eq(2)
 
-        expect(Item.available_in(Time.now + 5.day, Time.now + 4.days).count).to eq(0)
+        expect(described_class.available_in(Time.now + 5.day, Time.now + 4.days).count).to eq(0)
       end
     end
   end
@@ -118,7 +115,7 @@ describe Item do
       let(:file_content) { File.read(Rails.root.join('spec', 'csv', 'item.csv')) }
 
       it 'should create 3 items' do
-        expect { Item.import(file_content) }.to change { Item.count }.by(4)
+        expect { described_class.import(file_content) }.to change { described_class.count }.by(4)
       end
     end
   end

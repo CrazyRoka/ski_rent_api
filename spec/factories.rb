@@ -3,6 +3,12 @@ FactoryBot.define do
     name 'Lviv'
   end
 
+  factory :review, class: Review do
+    author     { create(:user, email: 'author@email.com') }
+    reviewable { create(:item, owner: author) }
+    description  "It's amazing"
+  end
+
   factory :user, class: User do
     name     'John'
     email    'john@email.com'

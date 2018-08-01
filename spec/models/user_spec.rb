@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe User do
   context 'relationship' do
-    subject(:user) { User.new }
+    subject(:user) { described_class.new }
     it 'should have many items' do
       expect { user.items.build }.not_to raise_error
     end
@@ -37,41 +37,16 @@ describe User do
   end
 
   context 'authentication' do
-    let(:city) { City.new(name: 'example') }
-    subject(:user) { User.new(name: 'John', password: '', email: 'john@example.com', city: city) }
+    let(:city) { create(:city) }
+    subject(:user) { create(:user, password: 'john', email: 'john@gmail.com') }
     it 'should have correct password' do
+      user.password_digest = ''
       expect(user.valid?).to eq(false)
-
-      user.password = 'my_name_is_john'
-      expect(user.valid?).to eq(true)
-    end
-  end
-
-  context 'transaction' do
-    let(:create_transaction) do
-      CreateMoneyTransaction.new.call(payer: payer, payee: payee,
-                                      payment_cents: 150, target: item)
-    end
-    let(:payee) { create(:user, email: 'test@email.com', balance: 0) }
-    let(:payer) { create(:user, email: 'something_else@email.com', balance: 200) }
-    let(:item) { create(:item, owner: payee) }
-
-    context 'user have enough money' do
-      it 'should perform transaction' do
-        expect { create_transaction }.to change { MoneyTransaction.count }.by(1)
-        expect(payer.reload.balance).to eq(50)
-        expect(payee.reload.balance).to eq(150)
-      end
     end
 
-    context 'user have not enough money' do
-      before { payer.balance = 100; payer.save }
-
-      it 'should not perform transaction' do
-        expect { create_transaction }.to change { MoneyTransaction.count }.by(0)
-        expect(payer.reload.balance).to eq(100)
-        expect(payee.reload.balance).to eq(0)
-      end
+    it 'should have correct email' do
+      user.email = 'something_else'
+      expect(user.valid?).to eq(false)
     end
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Review do
   context 'relationship' do
-    subject(:review) { Review.new }
+    subject(:review) { described_class.new }
     it 'should belongs to author' do
       expect { review.author = User.new }.not_to raise_error
     end
@@ -14,18 +14,21 @@ describe Review do
   end
 
   context 'validation' do
+    let(:author) { create(:user, email: 'author@email.com') }
+    let(:item_owner) { create(:user, email: 'item_owner@email.com') }
+    let(:review) do
+      described_class.new(author: author, reviewable: item_owner,
+                 description: "It's amazing")
+    end
+
     it 'should have author, that dealt with item and user already' do
-      author = User.new
-      item_owner = User.new
-      review = Review.new(author: author, reviewable: item_owner)
       expect(review.valid?).to eq(false)
 
-      item = item_owner.items.build
-      item.bookings << Booking.new(item: item, renter: author)
+      item = create(:item, owner: item_owner)
+      item.bookings << Booking.create(item: item, renter: author)
       expect(review.valid?).to eq(true)
 
-      review.reviewable_type = 'item'
-      review.reviewable_id = item.id
+      review.reviewable = item
       expect(review.valid?).to eq(true)
     end
   end

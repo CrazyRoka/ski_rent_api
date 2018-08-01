@@ -1,8 +1,6 @@
 class UserController < ApplicationController
   before_action :authenticate_user
   skip_before_action :authenticate_user, only: :sign_up
-  include Roar::Rails::ControllerAdditions
-  respond_to :json
 
   # POST /api/sign_up
   def sign_up
@@ -17,7 +15,7 @@ class UserController < ApplicationController
 
   # GET /api/users/me
   def me
-    respond_with current_user
+    render json: current_user.extend(UserRepresenter)
   end
 
   # PATCH /api/users

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Filter do
   context 'relationship' do
-    subject(:filter) { Filter.new }
+    subject(:filter) { described_class.new }
     it 'should have many options' do
       expect { filter.options.build }.not_to raise_error
     end

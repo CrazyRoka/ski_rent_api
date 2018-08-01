@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :email, :password_digest, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   before_destroy :conserve_transactions
 
@@ -39,5 +39,4 @@ class User < ApplicationRecord
       transaction.save
     end
   end
-
 end

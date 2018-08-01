@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Category do
   context 'relationship' do
-    subject(:category) { Category.new }
+    subject(:category) { described_class.new }
     it 'should have many items' do
       expect { category.items.build }.not_to raise_error
     end
