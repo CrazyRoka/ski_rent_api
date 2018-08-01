@@ -17,7 +17,7 @@ resource ItemsController do
       let(:id) { item.id }
 
       example_request 'should return item' do
-        expect(response_body).to eq(item.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(item).to_json)
       end
     end
 
@@ -48,7 +48,7 @@ resource ItemsController do
     let!(:adidas) { create(:item, owner: user, name: 'adidas boots', category: boots) }
 
     context 'list all user items' do
-      let(:items) { user.extend(UserItemsRepresenter) }
+      let(:items) { UserItemsRepresenter.new(user) }
 
       example_request 'should return all user items' do
         expect(status).to eq(200)
@@ -60,29 +60,10 @@ resource ItemsController do
 
     context 'list filtered items by skies category' do
       let(:of_category) { [skies.id] }
-      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
+      let(:owner) { User.new(items: (user.items & Item.of_category(of_category))) }
+      let(:items) { UserItemsRepresenter.new(owner) }
 
       example_request 'should return all user skies' do
-        expect(status).to eq(200)
-        expect(response_body).to eq(items.to_json)
-      end
-    end
-
-    context 'list filtered items by boots category' do
-      let(:of_category) { [boots.id] }
-      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
-
-      example_request 'should return all user boots' do
-        expect(status).to eq(200)
-        expect(response_body).to eq(items.to_json)
-      end
-    end
-
-    context 'list filtered items by boots category' do
-      let(:of_category) { [boots.id] }
-      let(:items) { User.new(items: (user.items & Item.of_category(of_category))).extend(UserItemsRepresenter) }
-
-      example_request 'should return all user boots' do
         expect(status).to eq(200)
         expect(response_body).to eq(items.to_json)
       end
@@ -92,7 +73,8 @@ resource ItemsController do
 
     context 'list filtered items by M size option' do
       before(:each) { adidas.options << size_m }
-      let(:items) { User.new(items: (user.items & Item.by_options(by_options))).extend(UserItemsRepresenter) }
+      let(:owner) { User.new(items: (user.items & Item.by_options(by_options))) }
+      let(:items) { UserItemsRepresenter.new(owner) }
       let(:by_options) { [size_m.id] }
 
       example_request 'should return adidas' do
@@ -104,7 +86,8 @@ resource ItemsController do
     parameter :with_name, 'Item name to filter'
 
     context 'list filtered items by name' do
-      let(:items) { User.new(items: (user.items & Item.with_name(with_name))).extend(UserItemsRepresenter) }
+      let(:owner) { User.new(items: (user.items & Item.with_name(with_name))) }
+      let(:items) { UserItemsRepresenter.new(owner) }
       let(:with_name) { 'boots' }
 
       example_request 'should return adidas' do
@@ -116,7 +99,8 @@ resource ItemsController do
     parameter :by_cost, 'Item cost filter'
 
     context 'list filtered items by cost range' do
-      let(:items) { User.new(items: (user.items & Item.by_cost(*by_cost.values))).extend(UserItemsRepresenter) }
+      let(:owner) { User.new(items: (user.items & Item.by_cost(*by_cost.values))) }
+      let(:items) { UserItemsRepresenter.new(owner) }
       let(:by_cost) { {days_number: 3, lower_price: 200, upper_price: 400} }
 
       example_request 'should return adidas' do
@@ -128,7 +112,8 @@ resource ItemsController do
     parameter :available_in, 'Item date filter'
 
     context 'list filtered items by availability' do
-      let(:items) { User.new(items: (user.items & Item.available_in(*available_in.values))).extend(UserItemsRepresenter) }
+      let(:owner) { User.new(items: (user.items & Item.available_in(*available_in.values))) }
+      let(:items) { UserItemsRepresenter.new(owner) }
       let(:available_in) { {from_date: Time.now, to_date: 3.days.from_now} }
 
       example_request 'should return all except ski' do
@@ -153,7 +138,7 @@ resource ItemsController do
       example_request '200' do
         expect(status).to eq(200)
         expect(item.reload.name).to eq('example')
-        expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(item).to_json)
       end
     end
 
@@ -163,7 +148,7 @@ resource ItemsController do
       example_request '200' do
         expect(status).to eq(200)
         expect(item.reload.daily_price_cents).to eq(350)
-        expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(item).to_json)
       end
     end
 
@@ -174,7 +159,7 @@ resource ItemsController do
       example_request '200' do
         expect(status).to eq(200)
         expect(item.reload.owner.id).to eq(other_owner.id)
-        expect(response_body).to eq(item.reload.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(item).to_json)
       end
     end
   end
@@ -189,7 +174,7 @@ resource ItemsController do
       example 'ok' do
         expect { do_request }.to change { Item.count }.by(-1)
         expect(status).to eq(200)
-        expect(response_body).to eq(item.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(item).to_json)
       end
     end
 
@@ -216,7 +201,7 @@ resource ItemsController do
       example '201' do
         expect { do_request }.to change { Item.count }.by(1)
         expect(status).to eq(201)
-        expect(response_body).to eq(Item.last.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(Item.last).to_json)
       end
     end
 
@@ -230,7 +215,7 @@ resource ItemsController do
       example '201' do
         expect { do_request }.to change { Item.count }.by(1)
         expect(status).to eq(201)
-        expect(response_body).to eq(Item.last.extend(ItemRepresenter).to_json)
+        expect(response_body).to eq(ItemRepresenter.new(Item.last).to_json)
         expect(Item.last.options.map(&:id)).to eq(option_ids)
       end
     end

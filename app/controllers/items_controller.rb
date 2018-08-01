@@ -16,13 +16,13 @@ class ItemsController < ApplicationController
   # GET /api/item(:id)
   def show
     item = authorize Item.find(params[:id])
-    render json: item.extend(ItemRepresenter)
+    render json: ItemRepresenter.new(item)
   end
 
   # GET /api/items
   def index
     items = apply_scopes(current_user.items).all
-    render json: User.new(items: items).extend(UserItemsRepresenter)
+    render json: UserItemsRepresenter.new(User.new(items: items))
   end
 
   # POST /api/items
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     item = Item.create(item_params)
     item.owner = current_user
     if item.save
-      render json: item.extend(ItemRepresenter), status: :created
+      render json: ItemRepresenter.new(item), status: :created
     else
       render json: { errors: item.errors }, status: :conflict
     end
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   def update
     item = authorize Item.find(params[:id])
     if item.update(item_params)
-      render json: item.extend(ItemRepresenter)
+      render json: ItemRepresenter.new(item)
     else
       render json: { errors: item.errors }, status: :unprocessible_entity
     end
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   def destroy
     item = authorize Item.find(params[:id])
     item.destroy
-    render json: item.extend(ItemRepresenter)
+    render json: ItemRepresenter.new(item)
   end
 
   # POST /api/items/import

@@ -15,13 +15,13 @@ class UserController < ApplicationController
 
   # GET /api/users/me
   def me
-    render json: current_user.extend(UserRepresenter)
+    render json: UserRepresenter.new(current_user)
   end
 
   # PATCH /api/users
   def update
     if current_user.update(user_params)
-      render json: current_user.extend(UserRepresenter)
+      render json: UserRepresenter.new(current_user)
     else
       render json: { errors: current_user.errors }, status: :unprocessable_entity
     end

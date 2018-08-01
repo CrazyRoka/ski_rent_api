@@ -2,13 +2,13 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource UserController do
-  header "Content-Type", "application/json"
+  header 'Content-Type', 'application/json'
 
   let(:raw_post) { params.to_json }
 
   post '/api/sign_up' do
-    parameter :email, "User email", required: true, scope: :user
-    parameter :password, "User password", required: true, scope: :user
+    parameter :email, 'User email', required: true, scope: :user
+    parameter :password, 'User password', required: true, scope: :user
 
     context 'successful sign up' do
       let(:email) { 'some@email.com' }
@@ -57,7 +57,7 @@ resource UserController do
       end
 
       example_request 'return updated user' do
-        expect(response_body).to eq(user.reload.extend(UserRepresenter).to_json)
+        expect(response_body).to eq(UserRepresenter.new(user.reload).to_json)
       end
     end
   end
@@ -73,7 +73,7 @@ resource UserController do
     context 'user profile' do
       example_request 'should return user info' do
         expect(status).to eq(200)
-        expect(response_body).to eq(user.extend(UserRepresenter).to_json)
+        expect(response_body).to eq(UserRepresenter.new(user).to_json)
       end
     end
   end
