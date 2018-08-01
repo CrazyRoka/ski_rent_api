@@ -41,7 +41,11 @@ resource ItemsController do
     let(:size_m) { create(:option, filter: size_filter, option_value: 'M') }
     let(:size_l) { create(:option, filter: size_filter, option_value: 'L') }
 
-    let!(:booking) { Booking.create(renter: user, item: ski, start_date: Time.now, end_date: 5.days.from_now) }
+    let!(:booking) do
+      Booking.create(
+        renter: user, item: ski, start_date: Time.now, end_date: 5.days.from_now
+      )
+    end
 
     let!(:ski) { create(:item, owner: user, name: 'ski', category: skies, daily_price_cents: 100) }
     let!(:fast_ski) { create(:item, owner: user, name: 'fast_ski', category: skies) }
@@ -60,7 +64,7 @@ resource ItemsController do
 
     context 'list filtered items by skies category' do
       let(:of_category) { [skies.id] }
-      let(:owner) { User.new(items: (user.items & Item.of_category(of_category))) }
+      let(:owner) { User.new(items: (user.items.of_category(of_category))) }
       let(:items) { UserItemsRepresenter.new(owner) }
 
       example_request 'should return all user skies' do
@@ -73,7 +77,7 @@ resource ItemsController do
 
     context 'list filtered items by M size option' do
       before(:each) { adidas.options << size_m }
-      let(:owner) { User.new(items: (user.items & Item.by_options(by_options))) }
+      let(:owner) { User.new(items: (user.items.by_options(by_options))) }
       let(:items) { UserItemsRepresenter.new(owner) }
       let(:by_options) { [size_m.id] }
 
@@ -86,7 +90,7 @@ resource ItemsController do
     parameter :with_name, 'Item name to filter'
 
     context 'list filtered items by name' do
-      let(:owner) { User.new(items: (user.items & Item.with_name(with_name))) }
+      let(:owner) { User.new(items: (user.items.with_name(with_name))) }
       let(:items) { UserItemsRepresenter.new(owner) }
       let(:with_name) { 'boots' }
 
@@ -99,7 +103,7 @@ resource ItemsController do
     parameter :by_cost, 'Item cost filter'
 
     context 'list filtered items by cost range' do
-      let(:owner) { User.new(items: (user.items & Item.by_cost(*by_cost.values))) }
+      let(:owner) { User.new(items: (user.items.by_cost(*by_cost.values))) }
       let(:items) { UserItemsRepresenter.new(owner) }
       let(:by_cost) { {days_number: 3, lower_price: 200, upper_price: 400} }
 
@@ -112,7 +116,7 @@ resource ItemsController do
     parameter :available_in, 'Item date filter'
 
     context 'list filtered items by availability' do
-      let(:owner) { User.new(items: (user.items & Item.available_in(*available_in.values))) }
+      let(:owner) { User.new(items: (user.items.available_in(*available_in.values))) }
       let(:items) { UserItemsRepresenter.new(owner) }
       let(:available_in) { {from_date: Time.now, to_date: 3.days.from_now} }
 
