@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  #before_action :authenticate_user
+  before_action :authenticate_user, only: :create
 
   has_scope :with_name
   has_scope :of_category, type: :array
