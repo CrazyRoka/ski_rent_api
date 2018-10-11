@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "GET",
   "route": "/api/items",
-  "description": "should return all user skies",
+  "description": "Get items by cost range",
   "explanation": null,
   "parameters": [
     {
@@ -33,30 +33,32 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/api/items?of_category[]=5",
+      "request_path": "/api/items?by_cost[days_number]=3&by_cost[lower_price]=200&by_cost[upper_price]=400",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTIsInN1YiI6NX0.Tw2x4RbSdOuj5g2qZwVbtovu-neMZ57iUTPbG-qYYLg",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6MTd9.TFbOW5IBw81Q-AnX566CB0RjLsBuhf-gfZKM2ybXxeY",
         "Host": "example.org",
         "Cookie": ""
       },
       "request_query_parameters": {
-        "of_category": [
-          "5"
-        ]
+        "by_cost": {
+          "days_number": "3",
+          "lower_price": "200",
+          "upper_price": "400"
+        }
       },
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 6,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100\n    },\n    {\n      \"id\": 7,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400\n    }\n  ]\n}",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 15,\n      \"owner_id\": 17,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100,\n      \"category\": {\n        \"id\": 21,\n        \"name\": \"skies\"\n      },\n      \"options\": [\n\n      ]\n    }\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"ff4f4691ab6848c4250bd5a7b102d7e6\"",
+        "ETag": "W/\"1b0389eadebd92d97cc2c565b889dfa4\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "dbd1f36e-4bca-496c-ad46-782f02e70915",
-        "X-Runtime": "0.005259",
-        "Content-Length": "108"
+        "X-Request-Id": "4987f01a-e513-483e-b7df-079adc738dd4",
+        "X-Runtime": "0.006707",
+        "Content-Length": "121"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

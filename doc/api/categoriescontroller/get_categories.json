@@ -1,0 +1,44 @@
+{
+  "resource": "CategoriesController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/categories",
+  "description": "Get categories",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/categories",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzcsInN1YiI6Mn0.4jgyFOuAtE2GFREfkbz8MQONwNGIHrQCKNPAVQqhANo",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "{}": null
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"categories\": [\n    {\n      \"id\": 1,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 1,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 1,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 16,\n              \"option_value\": \"40\"\n            }\n          ]\n        },\n        {\n          \"id\": 11,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 11,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 2,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 2,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 17,\n              \"option_value\": \"40\"\n            }\n          ]\n        },\n        {\n          \"id\": 12,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 12,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 3,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 3,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 18,\n              \"option_value\": \"40\"\n            }\n          ]\n        },\n        {\n          \"id\": 13,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 13,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 4,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 4,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 19,\n              \"option_value\": \"40\"\n            }\n          ]\n        },\n        {\n          \"id\": 14,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 14,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 5,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 5,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 20,\n              \"option_value\": \"40\"\n            }\n          ]\n        },\n        {\n          \"id\": 15,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 15,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 6,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 6,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 21,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 7,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 7,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 22,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 8,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 8,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 23,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 9,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 9,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 24,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Skies\",\n      \"filters\": [\n        {\n          \"id\": 10,\n          \"filter_name\": \"size\",\n          \"options\": [\n            {\n              \"id\": 10,\n              \"option_value\": \"40\"\n            },\n            {\n              \"id\": 25,\n              \"option_value\": \"40\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"fc317b481315136c83aa501fecc63bee\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "069f4504-41f6-4423-a5db-17e6f8502b61",
+        "X-Runtime": "0.055449",
+        "Content-Length": "1754"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

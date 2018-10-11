@@ -44,10 +44,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    apitome (0.1.0)
+    apitome (0.2.0)
       kramdown
       railties
-      rspec_api_documentation
     arel (9.0.0)
     bcrypt (3.1.12)
     bootsnap (1.3.1)
@@ -202,6 +201,11 @@ GEM
       mustache (~> 1.0, >= 0.99.4)
       rspec (~> 3.0)
     ruby_dep (1.5.0)
+    sass (3.6.0)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -231,7 +235,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
-  apitome
+  apitome (>= 0.2.0)
   bootsnap (>= 1.1.0)
   byebug
   database_cleaner
@@ -252,6 +256,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   rspec_api_documentation
+  sass
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

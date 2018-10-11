@@ -10,25 +10,25 @@ resource UserController do
     parameter :email, 'User email', required: true, scope: :user
     parameter :password, 'User password', required: true, scope: :user
 
-    context 'successful sign up' do
+    context 'Successfull' do
       let(:email) { 'some@email.com' }
       let(:password) { 'example' }
 
-      example 'should be 201' do
+      example 'Sign up' do
         expect { do_request }.to change { User.count }.by(1)
         expect(status).to eq(201)
         expect(response_body).to include('jwt')
       end
     end
 
-    context 'invalid sign up' do
+    context 'Failed' do
       let(:email) { 'some@email.com' }
       let(:password) { 'example' }
       let!(:user) { create(:user, email: email, password: password) }
 
-      example 'should be 404' do
+      example 'Invalid sign up' do
         expect { do_request }.to change { User.count }.by(0)
-        expect(status).to eq(404)
+        expect(status).to eq(403)
       end
     end
   end
@@ -44,19 +44,21 @@ resource UserController do
       "Bearer #{Knock::AuthToken.new(payload: { sub: user.id }).token}"
     end
 
-    context 'valid params' do
+    context 'Valid params' do
       let(:city_id) { create(:city, name: 'Havana').id }
       let(:name) { 'NewName' }
 
-      example_request 'should update name' do
-        expect(User.last.name).to eq(name)
+      context 'Updating', document: false do
+        example_request 'Update name' do
+          expect(User.last.name).to eq(name)
+        end
+
+        example_request 'Update city' do
+          expect(User.last.city_id).to eq(city_id)
+        end
       end
 
-      example_request 'should update city' do
-        expect(User.last.city_id).to eq(city_id)
-      end
-
-      example_request 'return updated user' do
+      example_request 'Update user' do
         expect(response_body).to eq(UserRepresenter.new(user.reload).to_json)
       end
     end
@@ -70,8 +72,8 @@ resource UserController do
       "Bearer #{Knock::AuthToken.new(payload: { sub: user.id }).token}"
     end
 
-    context 'user profile' do
-      example_request 'should return user info' do
+    context 'User profile' do
+      example_request 'Get my profile' do
         expect(status).to eq(200)
         expect(response_body).to eq(UserRepresenter.new(user).to_json)
       end

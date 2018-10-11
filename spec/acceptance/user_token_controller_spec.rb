@@ -10,18 +10,18 @@ resource 'UserTokenController' do
     parameter :email, "User email", required: true, scope: :auth
     parameter :password, "User password", required: true, scope: :auth
 
-    context 'valid log in' do
+    context 'Authentification' do
       let(:user) { create(:user, password: password) }
       let(:email) { user.email }
       let(:password) { 'example' }
 
-      example_request 'should be 201' do
+      example_request 'Log in' do
         expect(status).to eq(201)
         expect(response_body).to include('jwt')
       end
     end
 
-    context 'invalid log in' do
+    context 'Invalid log in', document: false do
       let(:email) { 'j@email.com' }
       let(:password) { 'something else' }
 

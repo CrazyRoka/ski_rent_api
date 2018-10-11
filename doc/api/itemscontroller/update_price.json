@@ -1,0 +1,57 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "PATCH",
+  "route": "/api/items/:id",
+  "description": "Update price",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "item",
+      "name": "name",
+      "description": "Item name"
+    },
+    {
+      "scope": "item",
+      "name": "daily_price_cents",
+      "description": "Item daily price"
+    },
+    {
+      "scope": "item",
+      "name": "owner_id",
+      "description": "Item owner id"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PATCH",
+      "request_path": "/api/items/22",
+      "request_body": "{\"item\":{\"daily_price_cents\":350}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6MjN9.YIxkr-Lshgo27wWGPF1E0kucztxyyBd-QFPeR6wAa_0",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"id\": 22,\n  \"owner_id\": 23,\n  \"name\": \"ski\",\n  \"daily_price_cents\": 350,\n  \"category\": {\n    \"id\": 26,\n    \"name\": \"Skies\"\n  },\n  \"options\": [\n\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"d08d00b957ff0c841b3d0cdd462bfbf9\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "8c3b395b-5eac-466a-b180-83d2d2a4e80a",
+        "X-Runtime": "0.008765",
+        "Content-Length": "109"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

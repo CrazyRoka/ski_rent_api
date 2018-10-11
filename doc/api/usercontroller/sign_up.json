@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "POST",
   "route": "/api/sign_up",
-  "description": "should be 201",
+  "description": "Sign up",
   "explanation": null,
   "parameters": [
     {
@@ -37,13 +37,13 @@
       "request_content_type": "application/json",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjJ9.ZuSgPAVLr7TO5PL-Qy-d0mhAjL8I9Pzx1zQgMzbeH34\"\n}",
+      "response_body": "{\n  \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6Mzh9.W0wJDmYCH7qwsTWYzpEN6Sj-DCAM7QlC30vsMK5JVlE\"\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"19f6f95b5ae510b642023712da29c2e6\"",
+        "ETag": "W/\"24010a9dacea9743a2ec5279f26a6251\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "06018ab1-042e-4e4f-9039-51257ed46119",
-        "X-Runtime": "0.007405",
+        "X-Request-Id": "1ea69451-8936-45ef-bfb5-a2fc4070c70b",
+        "X-Runtime": "0.010899",
         "Content-Length": "127"
       },
       "response_content_type": "application/json; charset=utf-8",

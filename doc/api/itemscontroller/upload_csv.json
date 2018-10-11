@@ -3,9 +3,14 @@
   "resource_explanation": null,
   "http_method": "POST",
   "route": "/api/items/import",
-  "description": "should create items",
+  "description": "Upload csv",
   "explanation": null,
   "parameters": [
+    {
+      "scope": "item",
+      "name": "name",
+      "description": "Item name"
+    },
     {
       "name": "csv",
       "description": "Csv with items"
@@ -18,10 +23,10 @@
     {
       "request_method": "POST",
       "request_path": "/api/items/import",
-      "request_body": "{\"csv\":\"id,name,daily_price_cents,owner_id\\n9,ski,400,100\\n10,fast ski,1000,100\\n11,slow ski,300,100\\n12,boot,300,100\\n\"}",
+      "request_body": "{\"csv\":\"id,name,daily_price_cents\\n9,ski,400\\n10,fast ski,1000\\n11,slow ski,300\\n12,boot,300\\n\"}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjF9.bGUr5J5_8L6mLe4rkoOcHbQ9B6QiZvVAfwp2tDM7x6Q",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6MzR9.3EBfE_19BYuLsPIqPobNNEMkHNMyr5l_97ohKHkBfvE",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -34,8 +39,8 @@
       "response_headers": {
         "Content-Type": "text/html",
         "Cache-Control": "no-cache",
-        "X-Request-Id": "25b44d64-326f-430d-bd56-340cf9805dc9",
-        "X-Runtime": "0.019986",
+        "X-Request-Id": "17e7f4e5-fdb0-4393-9e99-fd8d992794a9",
+        "X-Runtime": "0.009521",
         "Content-Length": "0"
       },
       "response_content_type": "text/html",

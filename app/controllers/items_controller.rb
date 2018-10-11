@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user
+  #before_action :authenticate_user
 
   has_scope :with_name
   has_scope :of_category, type: :array
@@ -15,13 +15,14 @@ class ItemsController < ApplicationController
 
   # GET /api/item(:id)
   def show
-    item = authorize Item.find(params[:id])
+    item = Item.find(params[:id])
+    # item = authorize Item.find(params[:id])
     render json: ItemRepresenter.new(item)
   end
 
   # GET /api/items
   def index
-    items = apply_scopes(current_user.items).all
+    items = apply_scopes(Item).all
     render json: UserItemsRepresenter.new(User.new(items: items))
   end
 
@@ -38,7 +39,8 @@ class ItemsController < ApplicationController
 
   # PATCH /api/items/:id
   def update
-    item = authorize Item.find(params[:id])
+    # item = authorize Item.find(params[:id])
+    item = Item.find(params[:id])
     if item.update(item_params)
       render json: ItemRepresenter.new(item)
     else
@@ -48,7 +50,8 @@ class ItemsController < ApplicationController
 
   # DELETE /api/items/:id
   def destroy
-    item = authorize Item.find(params[:id])
+    item = Item.find(params[:id])
+    # item = authorize Item.find(params[:id])
     item.destroy
     render json: ItemRepresenter.new(item)
   end

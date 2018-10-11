@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "GET",
   "route": "/api/users/me",
-  "description": "should return user info",
+  "description": "Get my profile",
   "explanation": null,
   "parameters": [
 
@@ -18,7 +18,7 @@
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6Mjd9.kNOP47SvsrpnRYApQE3GnKQIAIg262g7pImCCCW1sco",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6NDh9.bVJXGmDnub9titcHLEmMioiHZ6oUn1ro6jgnBm1eKgE",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -28,14 +28,14 @@
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"name\": \"John\",\n  \"email\": \"john@email.com\"\n}",
+      "response_body": "{\n  \"id\": 48,\n  \"name\": \"John\",\n  \"city\": {\n    \"id\": 50,\n    \"name\": \"Lviv\"\n  },\n  \"email\": \"john@email.com\",\n  \"items\": [\n\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"583816d92024fbc5e59c8ec2a5df9b2b\"",
+        "ETag": "W/\"86e6b26a67cba395bba51ed3334184a0\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "c41e97e3-a435-48df-a5de-ab8ce1ae6359",
-        "X-Runtime": "0.004240",
-        "Content-Length": "40"
+        "X-Request-Id": "4f2c285a-b1c7-4373-9381-10f4e574adeb",
+        "X-Runtime": "0.006133",
+        "Content-Length": "90"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

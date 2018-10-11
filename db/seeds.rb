@@ -9,19 +9,32 @@ User.destroy_all
 Item.destroy_all
 Booking.destroy_all
 Review.destroy_all
+Category.destroy_all
+Filter.destroy_all
+Option.destroy_all
 
-mountain = City.create(name: 'mountain')
-beach = City.create(name: 'beach')
+lviv = City.create(name: 'Lviv')
+kiev = City.create(name: 'Kiev')
 
-ghost = User.create(name: 'Ghost', password: 'My_name_is_Ghost', email: 'ghost@email.com', city: mountain, balance: 0)
-john = User.create(name: 'John', password: 'My_name_is_John', email: 'john@email.com', city: mountain, balance: 1000)
-maria = User.create(name: 'Maria', password: 'My_name_is_Maria', email: 'maria@email.com', city: beach, balance: 500)
-din = User.create(name: 'Din', password: 'My_name_is_Din', email: 'din@email.com', city: beach, balance: 250)
-don = User.create(name: 'Don', password: 'My_name_is_Don', email: 'don@email.com', city: mountain, balance: 1300)
+ghost = User.create(name: 'Ghost', password: 'My_name_is_Ghost', email: 'ghost@email.com', city: lviv, balance: 0)
+john = User.create(name: 'John', password: 'My_name_is_John', email: 'john@email.com', city: lviv, balance: 1000)
+maria = User.create(name: 'Maria', password: 'My_name_is_Maria', email: 'maria@email.com', city: kiev, balance: 500)
+din = User.create(name: 'Din', password: 'My_name_is_Din', email: 'din@email.com', city: kiev, balance: 250)
+don = User.create(name: 'Don', password: 'My_name_is_Don', email: 'don@email.com', city: lviv, balance: 1300)
 
-ski = Item.create(owner: john, name: 'ski', daily_price_cents: 400)
+size_40 = Option.create(option_value: '40')
+size_42 = Option.create(option_value: '42')
+size = Filter.create(filter_name: 'size', options: [ size_40, size_42 ])
+
+
+red = Option.create(option_value: 'red')
+blue = Option.create(option_value: 'blue')
+color = Filter.create(filter_name: 'color', options: [ red, blue ])
+
+skies = Category.create(name: 'ski', filters: [color, size])
+ski = Item.create(owner: john, name: 'ski', daily_price_cents: 400, category: skies)
 fast_ski = Item.create(owner: din, name: 'fast ski', daily_price_cents: 1000)
-slow_ski = Item.create(owner: don, name: 'slow ski', daily_price_cents: 300)
+slow_ski = Item.create(owner: don, name: 'slow ski', daily_price_cents: 300, category: skies)
 boot = Item.create(owner: don, name: 'boot', daily_price_cents: 300)
 
 Booking.create(item: ski, renter: maria, start_date: Time.now, end_date: Time.now + 10.days, cost_cents: 400 * 10)

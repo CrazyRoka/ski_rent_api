@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "PATCH",
   "route": "api/users",
-  "description": "should update city",
+  "description": "Update user",
   "explanation": null,
   "parameters": [
     {
@@ -26,10 +26,10 @@
     {
       "request_method": "PATCH",
       "request_path": "api/users",
-      "request_body": "{\"user\":{\"name\":\"NewName\",\"city_id\":26}}",
+      "request_body": "{\"user\":{\"name\":\"NewName\",\"city_id\":41}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjV9.i-_cLpKMsBggdRIy9TirtGBIoNO8QY0-fHqCdXJxIA4",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6NDJ9.SVVYTts_iF5lDXH4Fuwt9pjeQC8pNC_AMGer1yGPwf4",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -38,14 +38,14 @@
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"name\": \"NewName\",\n  \"email\": \"john@email.com\"\n}",
+      "response_body": "{\n  \"id\": 42,\n  \"name\": \"NewName\",\n  \"city\": {\n    \"id\": 41,\n    \"name\": \"Havana\"\n  },\n  \"email\": \"john@email.com\",\n  \"items\": [\n\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"f9145071f2ebb626fcc34ab01d425a13\"",
+        "ETag": "W/\"630ae4bea42b221a2cafcbd0bb98b465\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "543dee00-a0aa-4508-83cf-409bcc71787a",
-        "X-Runtime": "0.007362",
-        "Content-Length": "43"
+        "X-Request-Id": "ce8733a3-9153-4683-953d-95bfe6ca1ceb",
+        "X-Runtime": "0.014818",
+        "Content-Length": "95"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

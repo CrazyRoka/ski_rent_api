@@ -1,0 +1,44 @@
+{
+  "resource": "ItemsController",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/api/items",
+  "description": "Get all my items",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/items",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzcsInN1YiI6OX0.K_o1VsSguO0RzHe9zV5NGoZX8ekfzbAoXeevuJYW6K0",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+        "{}": null
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 3,\n      \"owner_id\": 9,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100,\n      \"category\": {\n        \"id\": 13,\n        \"name\": \"skies\"\n      },\n      \"options\": [\n\n      ]\n    },\n    {\n      \"id\": 4,\n      \"owner_id\": 9,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400,\n      \"category\": {\n        \"id\": 13,\n        \"name\": \"skies\"\n      },\n      \"options\": [\n\n      ]\n    },\n    {\n      \"id\": 5,\n      \"owner_id\": 9,\n      \"name\": \"adidas boots\",\n      \"daily_price_cents\": 400,\n      \"category\": {\n        \"id\": 14,\n        \"name\": \"boots\"\n      },\n      \"options\": [\n\n      ]\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"e7d2c1403299e5fe61e60026d2cb5803\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "46e23274-0329-438c-a323-112c04186e27",
+        "X-Runtime": "0.016132",
+        "Content-Length": "349"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

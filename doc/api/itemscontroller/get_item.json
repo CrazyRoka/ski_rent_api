@@ -2,8 +2,8 @@
   "resource": "ItemsController",
   "resource_explanation": null,
   "http_method": "GET",
-  "route": "/api/items",
-  "description": "should return all user items",
+  "route": "/api/items/:id",
+  "description": "Get item",
   "explanation": null,
   "parameters": [
 
@@ -14,11 +14,11 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/api/items",
+      "request_path": "/api/items/1",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTIsInN1YiI6NH0.HHnEiNSiZ8FDlmSfbHa9dDOC_t_5t2ZNymWxyW9H-0I",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzcsInN1YiI6NH0.1agoNlr6ljda4PEN3ZF8jn46l94cvUkaDw4JeukhKNE",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -28,14 +28,14 @@
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 3,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100\n    },\n    {\n      \"id\": 4,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400\n    },\n    {\n      \"id\": 5,\n      \"name\": \"adidas boots\",\n      \"daily_price_cents\": 400\n    }\n  ]\n}",
+      "response_body": "{\n  \"id\": 1,\n  \"owner_id\": 4,\n  \"name\": \"ski\",\n  \"daily_price_cents\": 400,\n  \"category\": {\n    \"id\": 11,\n    \"name\": \"Skies\"\n  },\n  \"options\": [\n\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"a73c0dbf7e4e5e485a758c954251736b\"",
+        "ETag": "W/\"bb957e81db2602a2281a55a791f62983\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "64f64824-451c-4c58-8c3c-e7c383ea4e14",
-        "X-Runtime": "0.009719",
-        "Content-Length": "163"
+        "X-Request-Id": "ad2c1256-92cd-4e1e-80a3-088d8567e546",
+        "X-Runtime": "0.017497",
+        "Content-Length": "107"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

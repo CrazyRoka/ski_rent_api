@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "GET",
   "route": "/api/items",
-  "description": "should return adidas",
+  "description": "Get Items filtered by categories",
   "explanation": null,
   "parameters": [
     {
@@ -33,32 +33,30 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/api/items?by_cost[days_number]=3&by_cost[lower_price]=200&by_cost[upper_price]=400",
+      "request_path": "/api/items?of_category[]=15",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTIsInN1YiI6MTB9.gAul2TLY7KUhhZMSrpdkXeDvJ8KCRo09HBUa6E3vYD8",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6MTF9.LgkrqJKdeUnB4wMo3maTE2J4afWcNPhxQX3gIa9S2fs",
         "Host": "example.org",
         "Cookie": ""
       },
       "request_query_parameters": {
-        "by_cost": {
-          "days_number": "3",
-          "lower_price": "200",
-          "upper_price": "400"
-        }
+        "of_category": [
+          "15"
+        ]
       },
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 21,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100\n    }\n  ]\n}",
+      "response_body": "{\n  \"items\": [\n    {\n      \"id\": 6,\n      \"owner_id\": 11,\n      \"name\": \"ski\",\n      \"daily_price_cents\": 100,\n      \"category\": {\n        \"id\": 15,\n        \"name\": \"skies\"\n      },\n      \"options\": [\n\n      ]\n    },\n    {\n      \"id\": 7,\n      \"owner_id\": 11,\n      \"name\": \"fast_ski\",\n      \"daily_price_cents\": 400,\n      \"category\": {\n        \"id\": 15,\n        \"name\": \"skies\"\n      },\n      \"options\": [\n\n      ]\n    }\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"a710b58e5e40793e7d235b74fa0fd6b8\"",
+        "ETag": "W/\"3a38e4292d4df2bf14f2db426bee8e9a\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "4dda5064-5ced-487e-81f3-4e7f977033d2",
-        "X-Runtime": "0.005673",
-        "Content-Length": "58"
+        "X-Request-Id": "c4a08ff2-5409-4fc1-980d-8057817ce791",
+        "X-Runtime": "0.011338",
+        "Content-Length": "234"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

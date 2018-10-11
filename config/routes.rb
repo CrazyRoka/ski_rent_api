@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   scope '/api' do
     post 'user_token'   => 'user_token#create'
 
-    post 'sign_up'      => 'user#sign_up'
+    post  'sign_up'      => 'user#sign_up'
     patch 'users' => 'user#update', defaults: { format: 'json' }
-    get  'users/me'     => 'user#me', defaults: { format: 'json' }, as: 'user'
+    get   'users/me'     => 'user#me', defaults: { format: 'json' }, as: 'user'
+    get   'categories' => 'categories#index'
 
     # post 'item/update'  => 'item#update', defaults: { format: 'json' }
     # post 'item/destroy' => 'item#destroy', defaults: { format: 'json' }

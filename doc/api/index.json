@@ -1,134 +1,112 @@
 {
   "resources": [
     {
+      "name": "CategoriesController",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Get categories",
+          "link": "categoriescontroller/get_categories.json",
+          "groups": "all",
+          "route": "/api/categories",
+          "method": "get"
+        }
+      ]
+    },
+    {
       "name": "ItemsController",
       "explanation": null,
       "examples": [
         {
-          "description": "200",
-          "link": "itemscontroller/200.json",
+          "description": "Create item",
+          "link": "itemscontroller/create_item.json",
           "groups": "all",
-          "route": "/api/items/:id",
-          "method": "patch"
+          "route": "/api/items",
+          "method": "post"
         },
         {
-          "description": "200",
-          "link": "itemscontroller/200.json",
+          "description": "Create item with category and options",
+          "link": "itemscontroller/create_item_with_category_and_options.json",
           "groups": "all",
-          "route": "/api/items/:id",
-          "method": "patch"
+          "route": "/api/items",
+          "method": "post"
         },
         {
-          "description": "200",
-          "link": "itemscontroller/200.json",
-          "groups": "all",
-          "route": "/api/items/:id",
-          "method": "patch"
-        },
-        {
-          "description": "200",
-          "link": "itemscontroller/200.json",
+          "description": "Delete item",
+          "link": "itemscontroller/delete_item.json",
           "groups": "all",
           "route": "/api/items/:id",
           "method": "delete"
         },
         {
-          "description": "201",
-          "link": "itemscontroller/201.json",
+          "description": "Get Items filtered by categories",
+          "link": "itemscontroller/get_items_filtered_by_categories.json",
           "groups": "all",
           "route": "/api/items",
-          "method": "post"
+          "method": "get"
         },
         {
-          "description": "201",
-          "link": "itemscontroller/201.json",
+          "description": "Get all my items",
+          "link": "itemscontroller/get_all_my_items.json",
           "groups": "all",
           "route": "/api/items",
-          "method": "post"
+          "method": "get"
         },
         {
-          "description": "authorization fail",
-          "link": "itemscontroller/authorization_fail.json",
+          "description": "Get item",
+          "link": "itemscontroller/get_item.json",
           "groups": "all",
           "route": "/api/items/:id",
           "method": "get"
         },
         {
-          "description": "authorization fail",
-          "link": "itemscontroller/authorization_fail.json",
+          "description": "Get items by cost range",
+          "link": "itemscontroller/get_items_by_cost_range.json",
           "groups": "all",
-          "route": "/api/items/:id",
-          "method": "delete"
+          "route": "/api/items",
+          "method": "get"
         },
         {
-          "description": "should create items",
-          "link": "itemscontroller/should_create_items.json",
+          "description": "Get items filtered by name",
+          "link": "itemscontroller/get_items_filtered_by_name.json",
+          "groups": "all",
+          "route": "/api/items",
+          "method": "get"
+        },
+        {
+          "description": "Get items filtered by options",
+          "link": "itemscontroller/get_items_filtered_by_options.json",
+          "groups": "all",
+          "route": "/api/items",
+          "method": "get"
+        },
+        {
+          "description": "Update name",
+          "link": "itemscontroller/update_name.json",
+          "groups": "all",
+          "route": "/api/items/:id",
+          "method": "patch"
+        },
+        {
+          "description": "Update owner",
+          "link": "itemscontroller/update_owner.json",
+          "groups": "all",
+          "route": "/api/items/:id",
+          "method": "patch"
+        },
+        {
+          "description": "Update price",
+          "link": "itemscontroller/update_price.json",
+          "groups": "all",
+          "route": "/api/items/:id",
+          "method": "patch"
+        },
+        {
+          "description": "Upload csv",
+          "link": "itemscontroller/upload_csv.json",
           "groups": "all",
           "route": "/api/items/import",
           "method": "post"
-        },
-        {
-          "description": "should return adidas",
-          "link": "itemscontroller/should_return_adidas.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return adidas",
-          "link": "itemscontroller/should_return_adidas.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return adidas",
-          "link": "itemscontroller/should_return_adidas.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return all except ski",
-          "link": "itemscontroller/should_return_all_except_ski.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return all user boots",
-          "link": "itemscontroller/should_return_all_user_boots.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return all user boots",
-          "link": "itemscontroller/should_return_all_user_boots.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return all user items",
-          "link": "itemscontroller/should_return_all_user_items.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return all user skies",
-          "link": "itemscontroller/should_return_all_user_skies.json",
-          "groups": "all",
-          "route": "/api/items",
-          "method": "get"
-        },
-        {
-          "description": "should return item",
-          "link": "itemscontroller/should_return_item.json",
-          "groups": "all",
-          "route": "/api/items/:id",
-          "method": "get"
         }
       ]
     },
@@ -137,43 +115,29 @@
       "explanation": null,
       "examples": [
         {
-          "description": "return updated user",
-          "link": "usercontroller/return_updated_user.json",
-          "groups": "all",
-          "route": "api/users",
-          "method": "patch"
-        },
-        {
-          "description": "should be 201",
-          "link": "usercontroller/should_be_201.json",
-          "groups": "all",
-          "route": "/api/sign_up",
-          "method": "post"
-        },
-        {
-          "description": "should be 404",
-          "link": "usercontroller/should_be_404.json",
-          "groups": "all",
-          "route": "/api/sign_up",
-          "method": "post"
-        },
-        {
-          "description": "should return user info",
-          "link": "usercontroller/should_return_user_info.json",
+          "description": "Get my profile",
+          "link": "usercontroller/get_my_profile.json",
           "groups": "all",
           "route": "/api/users/me",
           "method": "get"
         },
         {
-          "description": "should update city",
-          "link": "usercontroller/should_update_city.json",
+          "description": "Invalid sign up",
+          "link": "usercontroller/invalid_sign_up.json",
           "groups": "all",
-          "route": "api/users",
-          "method": "patch"
+          "route": "/api/sign_up",
+          "method": "post"
         },
         {
-          "description": "should update name",
-          "link": "usercontroller/should_update_name.json",
+          "description": "Sign up",
+          "link": "usercontroller/sign_up.json",
+          "groups": "all",
+          "route": "/api/sign_up",
+          "method": "post"
+        },
+        {
+          "description": "Update user",
+          "link": "usercontroller/update_user.json",
           "groups": "all",
           "route": "api/users",
           "method": "patch"
@@ -185,15 +149,8 @@
       "explanation": null,
       "examples": [
         {
-          "description": "should be 201",
-          "link": "usertokencontroller/should_be_201.json",
-          "groups": "all",
-          "route": "/api/user_token",
-          "method": "post"
-        },
-        {
-          "description": "should be 404",
-          "link": "usertokencontroller/should_be_404.json",
+          "description": "Log in",
+          "link": "usertokencontroller/log_in.json",
           "groups": "all",
           "route": "/api/user_token",
           "method": "post"

@@ -3,9 +3,14 @@
   "resource_explanation": null,
   "http_method": "DELETE",
   "route": "/api/items/:id",
-  "description": "200",
+  "description": "Delete item",
   "explanation": null,
   "parameters": [
+    {
+      "scope": "item",
+      "name": "name",
+      "description": "Item name"
+    },
     {
       "scope": "item",
       "name": "id",
@@ -18,11 +23,11 @@
   "requests": [
     {
       "request_method": "DELETE",
-      "request_path": "/api/items/30",
-      "request_body": "{\"item\":{\"id\":30}}",
+      "request_path": "/api/items/24",
+      "request_body": "{\"item\":{\"id\":24}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MTZ9.0oXYwCpoqYBo6wmbP5hvpmubNhF9nYcB3_0k7uJPp68",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6Mjh9.HPMgvAlePYAQHEMwiNzaUH_27GumAGhDLGITOgPId9E",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -31,14 +36,14 @@
       "request_content_type": "application/json",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"id\": 30,\n  \"name\": \"ski\",\n  \"daily_price_cents\": 400\n}",
+      "response_body": "{\n  \"id\": 24,\n  \"owner_id\": 28,\n  \"name\": \"ski\",\n  \"daily_price_cents\": 400,\n  \"category\": {\n    \"id\": 28,\n    \"name\": \"Skies\"\n  },\n  \"options\": [\n\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"06d4aa3aa050091cd191f52388b0abc7\"",
+        "ETag": "W/\"e94d06d1ebaa3c3c137fca42863df46c\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "2baa2277-75c9-463c-bcc4-2f2f763c1493",
-        "X-Runtime": "0.021826",
-        "Content-Length": "46"
+        "X-Request-Id": "0569fbaf-aaba-46e0-880c-cf3f8b0fa3f3",
+        "X-Runtime": "0.030672",
+        "Content-Length": "109"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

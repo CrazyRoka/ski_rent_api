@@ -9,7 +9,7 @@ class UserController < ApplicationController
       token = Knock::AuthToken.new payload: { sub: user.id }
       render json: token, status: :created
     else
-      head :not_found
+      render json: { errors: user.errors }, status: :forbidden
     end
   end
 

@@ -3,7 +3,7 @@
   "resource_explanation": null,
   "http_method": "POST",
   "route": "/api/items",
-  "description": "201",
+  "description": "Create item",
   "explanation": null,
   "parameters": [
     {
@@ -34,10 +34,10 @@
     {
       "request_method": "POST",
       "request_path": "/api/items",
-      "request_body": "{\"item\":{\"name\":\"example\",\"daily_price_cents\":300,\"category_id\":24,\"option_ids\":[2,3]}}",
+      "request_body": "{\"item\":{\"name\":\"example\",\"daily_price_cents\":300}}",
       "request_headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzMwMzEyOTMsInN1YiI6MjB9.31LgAS66LdFJNAHcPybN2g2sUJSzLRB0DI76AoMFv1I",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzkzNjE3MzgsInN1YiI6MzB9.yiBrdWmCOE9ZWJNxkS6R7p3_SHpCU_nGq8TEbc1O6To",
         "Host": "example.org",
         "Cookie": ""
       },
@@ -46,14 +46,14 @@
       "request_content_type": "application/json",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"id\": 33,\n  \"name\": \"example\",\n  \"daily_price_cents\": 300\n}",
+      "response_body": "{\n  \"id\": 25,\n  \"owner_id\": 30,\n  \"name\": \"example\",\n  \"daily_price_cents\": 300,\n  \"options\": [\n\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"d36218a6228b9649dfac6788d23ebb2c\"",
+        "ETag": "W/\"09bf560cdbe0c7bf3bccbc88a5f961b7\"",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "008f0eaf-68f6-43a1-bf03-08e8153deaa0",
-        "X-Runtime": "0.015399",
-        "Content-Length": "50"
+        "X-Request-Id": "1ecf3e61-fcf1-4e11-a51f-cde905941fe3",
+        "X-Runtime": "0.017116",
+        "Content-Length": "77"
       },
       "response_content_type": "application/json; charset=utf-8",
       "curl": null

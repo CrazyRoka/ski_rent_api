@@ -53,7 +53,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activerecord-import'
-gem 'apitome'
+gem 'sass'
+gem 'apitome', '>= 0.2.0'
 gem 'dry-monads'
 gem 'dry-transaction'
 gem 'has_scope'
